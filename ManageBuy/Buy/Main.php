@@ -25,6 +25,7 @@ $query = $condb->query($sql);
     <div id="content" class="p-4 p-md-5 pt-5">
 <!-- Card Buy Content  -->
 <?php include './Card.php'; ?>
+<?php include './Buyform.php'; ?>
     <!-- END Page Content  --></div>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.js" crossorigin="anonymous"></script>
     <script src="../../js/jquery.min.js"></script>

@@ -10,8 +10,5 @@
           <li>
             <a href="../../Home.php"><span class="fa fa-home mr-3"></span> กลับไปหน้าหลัก</a>
           </li>
-          <li>
-            <a href="#"><span class="fa fa-times mr-3"></span> ออก</a>
-          </li>
         </ul>
     	</nav>

@@ -33,6 +33,12 @@
             <a href="./ManageStock/Main.php"><span class="fa fa-archive mr-3"></span> การจัดการคลังสินค้า</a>
           </li>
           <li>
+            <a href="./ManageMaterial/"><span class="fa fa-archive mr-3"></span> การจัดการข้อมูลวัสดุ</a>
+          </li>
+          <li>
+            <a href="#"><span class="fa fa-times mr-3"></span> จัดการสั่งซื้อครุภัณฑ์</a>
+          </li>
+          <li>
             <a href="#"><span class="fa fa-file mr-3"></span> รายงาน</a>
           </li>
           <!-- <li>

@@ -1,13 +1,8 @@
 <?php
 session_start();
 include './condb.php';
-$sql = "SELECT A.id , A.M_Fname, A.M_Lname, A.M_Add, A.M_Tel, COUNT(C.Bu_total) AS Total 
-FROM member AS A 
-INNER JOIN buy AS B 
-ON A.id = B.Mem_id 
-INNER JOIN buy_detail AS C 
-ON B.B_id = C.Bu_id";
-$query = $condb->query($sql);
+$sql = "SELECT * FROM `material_stock`";
+$result = $condb->query($sql);
 ?>
 <!doctype html>
 <html lang="en">
@@ -26,34 +21,33 @@ $query = $condb->query($sql);
 </head>
 
 <body class="sb-nav-fixed">
-<?php include './Sidebar.php'; ?>
-
-<!-- Page Content  -->
+    <?php include './Sidebar.php'; ?>
+    <!-- Page Content  -->
     <div id="content" class="p-4 p-md-5 pt-5">
-<!-- Card Content  -->
- <?php include './Card.php'; ?>
-  <!-- Table Member -->
-  <?php include './Table/table_member.php'; ?>
-<!-- Chart Content  -->
-<?php include './barchart.php'; ?>
-    <!-- END Table Member  -->
-    <!-- END Page Content  -->
+        <!-- Card Content  -->
+        <?php include './Card.php'; ?>
+        <!-- Table Member -->
+        <?php include './Table/table_member.php'; ?>
+        <!-- Chart Content  -->
+        <?php include './barchart.php'; ?>
+        <!-- END Table Member  -->
+        <!-- END Page Content  -->
     </div>
     <!-- JQuery -->
     <script src="https://code.jquery.com/jquery-3.4.1.min.js" crossorigin="anonymous"></script>
     <script src="./js/jquery.min.js"></script>
     <!-- DataTable -->
-    <script src="./DataTables/datatables.min.js" crossorigin="anonymous"></script>
-    <script src="./js/DataTable.js"></script>
+    <script src="<?= DataTables ?>datatables.min.js"></script>
+    <script src="<?= JS ?>datatable.js"></script>
     <!-- Chart -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.js" crossorigin="anonymous"></script>
-    <script src="./js/barchart.js"></script>
+    <script src="<?= JS ?>barchart.js"></script>
 
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
-    <script src="./js/main.js"></script> 
-    
-    <script src="./js/popper.js"></script>
-    <script src="./js/bootstrap.min.js"></script>
+    <script src="<?= JS ?>main.js"></script>
+
+    <script src="<?= JS ?>/js/popper.js"></script>
+    <script src="<?= JS ?>/js/bootstrap.min.js"></script>
 </body>
 
 </html>

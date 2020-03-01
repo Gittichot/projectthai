@@ -11,4 +11,5 @@ define("URL", "http://localhost/PROJECT/");
 define("CSS", URL."css/");
 define("JS", URL."js/");
 define("PLUGIN", URL."plugin/");
+define("DataTables", URL."DataTables/");
 ?>

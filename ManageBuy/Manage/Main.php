@@ -31,6 +31,10 @@ $query = $condb->query($sql);
     <script src="../../js/popper.js"></script>
     <script src="../../js/bootstrap.min.js"></script>
     <script src="../../js/main.js"></script>
+
+    <script >
+    $('#Buytable').DataTable();
+    </script>
 </body>
 
 </html>
