@@ -25,7 +25,7 @@ $result = $condb->query($sql);
     <!-- Page Content  -->
     <div id="content" class="p-4 p-md-5 pt-5">
         <!-- Table Member -->
-        <?php include 'Table/table_material.php'; ?>
+        <?php include 'table_material.php'; ?>
         <!-- Chart Content  -->
 
         <!-- END Table Member  -->
@@ -49,3 +49,4 @@ $result = $condb->query($sql);
 </body>
 
 </html>
+</head>
