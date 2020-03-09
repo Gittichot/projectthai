@@ -1,7 +1,7 @@
 <?php
 session_start();
 include '../condb.php';
-$sql = "SELECT * FROM member";
+$sql = "SELECT * FROM member WHERE M_Status = 2";
 $query = $condb->query($sql);
 ?>
 <!doctype html>
@@ -33,7 +33,6 @@ $query = $condb->query($sql);
     <script src="../js/jquery.min.js"></script>
 
     <script src="../DataTables/datatables.min.js"></script>
-    <script scr="../js/DataTable.js"></script>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.js" crossorigin="anonymous"></script>
 

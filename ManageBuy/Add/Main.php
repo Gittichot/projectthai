@@ -1,7 +1,7 @@
 <?php
 session_start();
-include '../../../condb.php';
-$sql = "SELECT * FROM stock_product";
+include '../../condb.php';
+$sql = "SELECT * FROM buy";
 $query = $condb->query($sql);
 ?>
 <!doctype html>
@@ -18,19 +18,20 @@ $query = $condb->query($sql);
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
     <!-- Vendor CSS-->
-    <link href="../../../vendor/select2/select2.min.css" rel="stylesheet" media="all">
-    <link href="../../../vendor/datepicker/daterangepicker.css" rel="stylesheet" media="all">
-    <link rel="stylesheet" href="../../../css/style.css">
+    <link href="../../vendor/select2/select2.min.css" rel="stylesheet" media="all">
+    <link href="../../vendor/datepicker/daterangepicker.css" rel="stylesheet" media="all">
+    <link rel="stylesheet" href="../../css/style.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <!-- Formadd CSS-->
-    <link href="../../../css/main.min.css" rel="stylesheet" media="all">
+    <link href="../../css/main.min.css" rel="stylesheet" media="all">
 </head>
 
 <body>
-<?php include './sidebaradd.php'; ?>
+<?php include './Sidebar.php'; ?>
 
 <!-- Page Content  -->
     <div id="content" class="p-4 p-md-5 pt-5">
-    <?php include './Formadd.php'; ?>
+    <?php include './Addform.php'; ?>
  <!-- Table Manage Member -->
     <!-- END Table Member  -->
     <!-- END Page Content  --></div>

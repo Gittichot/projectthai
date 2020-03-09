@@ -1,15 +1,16 @@
 <?php
 session_start();
 include '../../condb.php';
-$Pid = $_POST['Pid'];
-$pam  = $_POST['pam'];
-$Btt  = $_POST['Btt'];
-$bd = $_POST['bd'];
+$Mid = $_POST['mid'];
+$Pid = $_POST['pid'];
+$pam  = $_POST['amount'];
+$Btt  = $_POST['total'];
+$bd = $_POST['date'];
 //  echo $Pid;
 //  echo $pam;
 //  echo $Btt;
 //  echo $bd;
-$sql = "INSERT INTO `buy_detail`(B_id, P_id, B_amount, B_total, B_date) VALUES('','".$Pid."','".$pam."','".$Btt."','".$bd."')";
+$sql = "INSERT INTO `buy`(B_id, M_id, P_id, B_amount, B_total, B_date) VALUES('','".$Mid."','".$Pid."','".$pam."','".$Btt."','".$bd."')";
 $query = $condb->query($sql);
 if($query){
         echo "<script>";

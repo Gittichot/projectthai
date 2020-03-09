@@ -1,4 +1,4 @@
-<div class="container">
+<div class="card mb-4">
     <div class="from-control">
         <div class="card mb-4">
             <b><div class="card-header"><i class="fa fa-bar-chart mr-1"></i>กราฟยอดการขาย</div></b>

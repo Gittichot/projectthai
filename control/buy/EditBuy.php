@@ -2,7 +2,6 @@
 session_start();
 include '../../condb.php';
 $Bid = $_POST['Bid']
-$Pid = $_POST['Pid'];
 $pam  = $_POST['pam'];
 $Btt  = $_POST['Btt'];
 $bd = $_POST['bd'];
@@ -12,7 +11,7 @@ $bd = $_POST['bd'];
 //  echo $Btt;
 //  echo $bd;
 
-$sql = "UPDATE `buy_detail` SET `P_id`='".$Pid."',`B_amount`='".$pam."',`B_total`='".$Btt."',`B_date`='".$bd."' WHERE B_id = '".$Bid."' ";
+$sql = "UPDATE `buy` SET `B_amount`='".$pam."',`B_total`='".$Btt."',`B_date`='".$bd."' WHERE B_id = '".$Bid."' ";
 $query = $condb->query($sql);
 if($query){
     echo "<script>";

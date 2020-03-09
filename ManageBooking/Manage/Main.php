@@ -1,7 +1,7 @@
 <?php
 session_start();
 include '../../condb.php';
-$sql = "SELECT * FROM buy";
+$sql = "SELECT * FROM booking AS A LEFT JOIN booking_detail AS B ON A.Bo_id = B.Boo_id";
 $query = $condb->query($sql);
 ?>
 <!doctype html>
@@ -16,6 +16,8 @@ $query = $condb->query($sql);
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="../../css/style.css">
+    <link rel="stylesheet" href="../../DataTables/datatables.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 </head>
 
 <body>
@@ -26,14 +28,20 @@ $query = $condb->query($sql);
 <!-- Card Content  -->
 <?php include './Table.php'; ?>
     <!-- END Page Content  --></div>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.js" crossorigin="anonymous"></script>
     <script src="../../js/jquery.min.js"></script>
-    <script src="../../js/popper.js"></script>
-    <script src="../../js/bootstrap.min.js"></script>
+
+    <script src="../../DataTables/datatables.min.js" crossorigin="anonymous"></script>
+
     <script src="../../js/main.js"></script>
 
+    <script src="../../js/popper.js"></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.js" crossorigin="anonymous"></script>
+    
+    <script src="../../js/bootstrap.min.js"></script>
+
     <script >
-    $('#Bookingtable').DataTable();
+    $('#Bookingdt').DataTable();
     </script>
 </body>
 

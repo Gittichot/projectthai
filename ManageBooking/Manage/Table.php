@@ -1,20 +1,9 @@
 <!-- <div id="content" class="p-4 p-md-5 pt-5"> -->
-
-<div class="container">
-   <b><div class="card-header">การจัดการจองสินค้า</div></b>
-        <div class="table-wrapper">
-            <div class="table-title">
-                <div class="row">
-                    <div class="col-sm-6">
-						<!-- <h2>Manage <b>Employees</b></h2> -->
-					</div>
-					<!-- <div class="col-sm-3">
-						<a href="#addEmployeeModal" class="btn btn-success" data-toggle="modal"><i class="material-icons">&#xE147;</i> <span>Add New Employee</span></a>						
-					</div> -->
-                </div>
-            </div>
-			<div id="employee_table" method="POST" >
-            <table class="table table-striped table-hover">
+<div class="card mb-4">
+    	<div class="card-header"><i class="fa fa-table mr-1"></i>ตารางจัดการข้อมูล สินค้า</div>
+            <div class="card-body">
+                <div class="table-responsive">
+                    <table class="table table-bordered" id="Bookingdt" width="100%" cellspacing="0">
                 <thead>
           <tr>
             <th>#</th>

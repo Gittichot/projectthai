@@ -2,7 +2,7 @@
 session_start();
 include '../../condb.php';
 $id = $_GET['delid'];
-$sqldel = "DELETE FROM buy_detail WHERE B_id = '$id'";
+$sqldel = "DELETE FROM buy WHERE B_id = '$id'";
 $querydel = $condb->query($sqldel);
 if($querydel){
     echo "<script>";

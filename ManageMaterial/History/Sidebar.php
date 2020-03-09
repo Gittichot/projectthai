@@ -14,19 +14,19 @@
 	          <i class="fa fa-bars"></i>
 	          <span class="sr-only">Toggle Menu</span>
 	        </button>
-        </div> -->
+        </div> -->    
 		<h1>
 			<div class="logo">Admin</div>
 		</h1>
 		<ul class="list-unstyled components mb-5">
 			<li class="">
-				<a href="../Home.php"><span class="fa fa-home mr-3"></span> หน้าหลัก</a>
+				<a href="../../Home.php"><span class="fa fa-home mr-3"></span> หน้าหลัก</a>
 			</li>
 			<li class="">
 				<a href="../"><span class="fa fa-folder-open mr-3"></span> จัดการวัสดุ</a>
 			</li>
 			<li class="">
-				<a href="../Add/MatOrder_create.php"><span class="fa fa-cart-plus mr-3"></span> สั่งซื้อสิ้นค้า</a>
+				<a href="../Add/MatOrder_create.php"><span class="fa fa-cart-plus mr-3"></span> สั่งซื้อวัสดุ</a>
 			</li>
 			<li class="active">
 				<a href=""><span class="fa fa-history mr-3"></span> ประวัติการสั่งซื้อวัสดุ</a>

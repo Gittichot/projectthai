@@ -1,6 +1,6 @@
 <?php
 session_start();
-include '../../../condb.php';
+include '../../condb.php';
 $sql = "SELECT * FROM stock_product";
 $query = $condb->query($sql);
 ?>
@@ -20,13 +20,14 @@ $query = $condb->query($sql);
     <!-- Vendor CSS-->
     <link href="../../../vendor/select2/select2.min.css" rel="stylesheet" media="all">
     <link href="../../../vendor/datepicker/daterangepicker.css" rel="stylesheet" media="all">
-    <link rel="stylesheet" href="../../../css/style.css">
+    <link rel="stylesheet" href="../../css/style.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <!-- Formadd CSS-->
     <link href="../../../css/main.min.css" rel="stylesheet" media="all">
 </head>
 
 <body>
-<?php include './sidebaradd.php'; ?>
+<?php include './Sidebar.php'; ?>
 
 <!-- Page Content  -->
     <div id="content" class="p-4 p-md-5 pt-5">
@@ -35,18 +36,11 @@ $query = $condb->query($sql);
     <!-- END Table Member  -->
     <!-- END Page Content  --></div>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.js" crossorigin="anonymous"></script>
-    <script src="../../../js/jquery.min.js"></script>
-    <script src="../../../js/popper.js"></script>
-    <script src="../../../js/bootstrap.min.js"></script>
-    <script src="../../../js/main.js"></script>
-    <!-- Jquery JS Form add -->
-    <script src="../../../vendor/jquery/jquery.min.js"></script>
-    <!-- Vendor JS Form add -->
-    <script src="../../../vendor/select2/select2.min.js"></script>
-    <script src="../../../vendor/datepicker/moment.min.js"></script>
-    <script src="../../../vendor/datepicker/daterangepicker.js"></script>
-    <!-- Main JS Form add -->
-    <script src="../../../js/global.js"></script>
+    <script src="../../js/jquery.min.js"></script>
+    <script src="../../js/popper.js"></script>
+    <script src="../../js/bootstrap.min.js"></script>
+    <script src="../../js/main.js"></script>
+    
 </body>
 
 </html>

@@ -1,52 +1,33 @@
-<body>
-    <div class="page-wrapper ">
-        <div class="wrapper wrapper--w790">
-            <div class="card card-5">
-                <div class="card-heading">
-                    <h2 class="title">Event Registration Form</h2>
-                </div>
-                <div class="card-body">
-                    <form method="POST">
-                        <div class="form-row m-b-55">
-                        <div class="form-group">
-							<label>First Name</label>
-							<input type="text" name="Fname" id="Fname" class="form-control" required>
+<div class="card">
+	<div class="card-body">
+	<div class="card-title"><h5>นำเข้าสินค้า</h5></div>
+		<form action="../../control/stock/AddPro.php" method="POST">
+		<div class="modal-body">
+						<div class="form-group">
+							<label>รหัสผู้ขาย</label>
+							<input type="text"  name="mid" id="mid" class="form-control" required>
 						</div>
 						<div class="form-group">
-							<label>Sure Name</label>
-							<input type="text" name="Lname" id="Lname" class="form-control" required>
+							<label>รหัสสินค้า</label>
+							<input type="text"  name="pid" id="pid" class="form-control" required>
 						</div>
 						<div class="form-group">
-							<label>Address</label>
-							<input class="form-control" name="Add" id="Add" required></input>
+							<label>จำนวนสินค้า</label>
+							<input class="form-control"  name="amount" id="amount" class="form-control" required></input>
 						</div>
 						<div class="form-group">
-							<label>Phone</label>
-							<input type="text" name="Phone" id="Phone" class="form-control" required>
+							<label>ราคารวม</label>
+							<input type="text"  name="total" id="total" class="form-control" required>
 						</div>
 						<div class="form-group">
-							<label>Username</label>
-							<input type="Username" name="User" id="User" class="form-control" required>
+							<label>วันที่ซื้อ</label>
+							<input type="Date"  name="date" id="date" class="form-control" required>
 						</div>
-						<div class="form-group">
-							<label>Password</label>
-							<input type="Password" name="Pass" id="Pass" class="form-control" required>
-						</div>
-						<div class="form-group">
-							<label>Salary</label>
-							<input type="int" name="Sal" id="Sal" class="form-control" required>
-						</div>
-						<div class="form-group">
-							<label>OT Code</label>
-							<input type="int" name="OT" id="OT" class="form-control" required>
-						</div>
-                            </div>
-                        </div>
-                        <div>
-                            <button class="btn btn--radius-2 btn--red" type="submit">Register</button>
-                        </div>
-                    </form>
-                </div>
-            </div>
-        </div>
-    </div>
+					</div>
+					<div class="modal-footer">
+						<input type="submit" class="btn btn-success" value="Save Change">
+					</div>
+
+</form>
+	</div>
+</div>
