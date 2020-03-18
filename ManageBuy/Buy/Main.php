@@ -37,6 +37,9 @@ if(!empty($_GET["action"])) {
                     unset($_SESSION["cart_item"]);
                 }
             }
+            else {
+                unset($_SESSION["cart_item"]);
+            }
         break;
         case "empty":
             unset($_SESSION["cart_item"]);

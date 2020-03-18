@@ -2,6 +2,9 @@
 <div class="card mb-4">
 	<div class="card-header"><i class="fa fa-table mr-1"></i>ตารางข้อมูล วัสดุ</div>
 	<div class="card-body">
+		<div class="d-flex align-items-end flex-column bd-highlight mb-3">
+			<a class="btn btn-success" href="Add/add_mat.php">เพิ่มข้อมูลสินค้า</a>
+		</div>
 		<div class="table-responsive">
 			<table class="table table-bordered text-center DataTable" id="homeTable" width="100%" cellspacing="0">
 				<thead class="thead-light">
@@ -10,6 +13,7 @@
 						<th scope="col">ชื่อวัสดุ</th>
 						<th scope="col">จำนวน</th>
 						<th scope="col">ที่จัดเก็บ</th>
+						<th scope="col">เวลาการสั่งสินค้า</th>
 						<th scope="col"></th>
 						<th scope="col"></th>
 					</tr>
@@ -25,6 +29,7 @@
 							<td><?php echo $row['mstock_name']; ?></td>
 							<td><?php echo $row['mstock_amount']; ?></td>
 							<td><?php echo $row['mstock_location']; ?></td>
+							<td><?php echo $row['mstock_waittime']; ?></td>
 							<td>
 								<a href="product_manage/edit_product.php?id=<?php echo $row['id']; ?>" class="btn btn-sm btn-warning ">
 									<i class="fa fa-pencil-square-o"></i> แก้ไข

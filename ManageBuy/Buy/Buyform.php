@@ -12,7 +12,7 @@
                     $total_price = 0;
                  ?>
                     <table class="table tbl-cart" id="btable" width="100%" cellspacing="0">
-                        <thead>
+                <thead>
           <tr>
             <th>สินค้า</th>
             <th>จำนวน</th>

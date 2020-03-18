@@ -1,7 +1,7 @@
 <?php
 session_start();
 include '../../condb.php';
-$Bid = $_POST['Bid']
+$Bid = $_POST['Bid'];
 $pam  = $_POST['pam'];
 $Btt  = $_POST['Btt'];
 $bd = $_POST['bd'];

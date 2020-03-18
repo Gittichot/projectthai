@@ -4,15 +4,31 @@ include '../../condb.php';
 $id = $_GET['delid'];
 $sqldel = "DELETE FROM buy WHERE B_id = '$id'";
 $querydel = $condb->query($sqldel);
-if($querydel){
+$status = $_SESSION["status"];
+if($querydel){      
+    if($status=='Admin'){
     echo "<script>";
-    echo "alert('ลบข้อมูลเรียบร้อยแล้ว');";
-    echo "window.location='../../View/Buy/Main_Buy.php';";
-    echo "</script>";
-}else{
+    echo "alert('ทำรายการเรียบร้อยแล้ว');";
+    echo "window.location='../../Mainadmin.php';";
+    echo "</script>";   
+    }
+    else {
     echo "<script>";
-    echo "alert('ไม่สามารถลบข้อมูลได้)";
-    echo "window.location='../../View/Buy/Main_Buy.php';";
-    echo "</script>";
-}
+    echo "alert('ทำรายการเรียบร้อยแล้ว');";
+    echo "window.location='../../Member/MainMember.php';";
+    echo "</script>";   
+    }
+    }
+    else if($status=='Admin'){
+        echo "<script>";
+        echo "alert('ทำรายการเรียบร้อยแล้ว');";
+        echo "window.location='../../Mainadmin.php';";
+        echo "</script>";   
+        }
+        else {
+        echo "<script>";
+        echo "alert('ทำรายการเรียบร้อยแล้ว');";
+        echo "window.location='../../Member/MainMember.php';";
+        echo "</script>";   
+        }
 ?>

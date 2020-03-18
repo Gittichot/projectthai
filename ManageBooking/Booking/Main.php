@@ -1,8 +1,47 @@
 <?php
 session_start();
-include '../../condb.php';
-$sql = "SELECT * FROM member";
-$query = $condb->query($sql);
+require '../../control/buy/controller.php';
+$db_handle = new DBController();
+if(!empty($_GET["action"])) {
+    switch($_GET["action"]) {
+        case "add":
+            if(!empty($_POST["quantity"])) {
+                $productByCode = $db_handle->runQuery("SELECT * FROM stock_product WHERE P_id = '".$_GET["id"]."' ");
+                $itemArray = array($productByCode[0]["P_id"]=>array('name'=>$productByCode[0]["P_name"], 'id'=>$productByCode[0]["P_id"], 'quantity'=>$_POST["quantity"], 'price'=>$productByCode[0]["P_price"],));
+
+            if(!empty($_SESSION["Booking_cart"])) {
+                if(in_array($productByCode[0]["P_id"], array_keys($_SESSION["Booking_cart"]))) {
+                    foreach($_SESSION["Booking_cart"] as $k => $v) {
+                        if($productByCode[0]["P_id"] == $k) {
+                            if(empty($_SESSION["Booking_cart"][$k]["quantity"])) {
+                                $_SESSION["Booking_cart"][$k]["quantity"] = 0;
+                            }
+                            $_SESSION["Booking_cart"][$k]["quantity"] += $_POST["quantity"];
+                        }
+                    }
+                } else {
+                    $_SESSION["Booking_cart"] = array_merge($_SESSION["Booking_cart"], $itemArray);
+                }
+            } else {
+                $_SESSION["Booking_cart"] = $itemArray;
+            }
+        }
+        break;
+        case "remove":
+            if(!empty($_SESSION["Booking_cart"])) {
+                foreach($_SESSION["Booking_cart"] as $k => $v) {
+                    if($_GET["id"] == $k)
+                    unset($_SESSION["Booking_cart"][$k]);
+                    if(empty($_SESSION["Booking_cart"]))
+                    unset($_SESSION["Booking_cart"]);
+                }
+            }
+        break;
+        case "empty":
+            unset($_SESSION["Booking_cart"]);
+        break;
+    }
+}
 ?>
 <!doctype html>
 <html lang="en">
@@ -18,6 +57,14 @@ $query = $condb->query($sql);
     <link rel="stylesheet" href="../../css/style.css">
     <link rel="stylesheet" href="../../DataTables/datatables.css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <style>
+    .no-records {
+    text-align: center;
+    clear: both;
+    margin: 40px 0;
+    color: red;
+    }
+    </style>
 </head>
 
 <body>
@@ -27,7 +74,7 @@ $query = $condb->query($sql);
     <div id="content" class="p-4 p-md-5 pt-5">
     <h2>การจองสินค้า</h2>
 <!-- Card Buy Content  -->
-<?php include './Card.php'; ?>
+<?php include './TableBooking.php'; ?>
 <?php include './BookingForm.php'; ?>
     <!-- END Page Content  --></div>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.js" crossorigin="anonymous"></script>

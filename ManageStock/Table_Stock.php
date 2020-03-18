@@ -41,15 +41,15 @@
 					</div>
 						<div class="form-group">
 							<label>ชื่อสินค้า</label>
-							<input type="text" value="<?php echo $result['P_name'];?>" name="pname" id="pname" class="form-control" required>
+							<input type="text" value="<?php echo $result['P_name'];?>" name="pname" id="pname" class="form-control" min="0" required>
 						</div>
 						<div class="form-group">
 							<label>จำนวนคงเหลือ</label>
-							<input type="text" value="<?php echo $result['P_unit'];?>" name="amount" id="amount" class="form-control" required>
+							<input type="text" value="<?php echo $result['P_unit'];?>" name="amount" id="amount" class="form-control" min="0" required>
 						</div>
 						<div class="form-group">
 							<label>ราคาต่อหน่วย</label>
-							<input class="form-control" value="<?php echo $result['P_price'];?>" name="price" id="price" class="form-control" required></input>
+							<input class="form-control" value="<?php echo $result['P_price'];?>" name="price" id="price" class="form-control" min="0" required></input>
 						</div>
 					</div>
 					<div class="modal-footer">

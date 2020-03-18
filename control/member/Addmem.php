@@ -5,8 +5,10 @@ include '../../condb.php';
 // $Lname  = $_POST['Lname'];
 // $tel  = $_POST['Phone'];
 // $add = $_POST['Add'];
-// $User  = $_POST['user'];
-// $pass = $_POST['pass'];
+$User  = $_POST['user'];
+$pass = $_POST['pass'];
+$username = md5($User);
+$password = md5($pass);
 
 // echo $Fname;
 // echo $Lname;
@@ -15,7 +17,7 @@ include '../../condb.php';
 // echo $User;
 // echo $pass;
 $sql = "INSERT INTO member(id, M_Fname, M_Lname, M_User, M_Pass, M_Add, M_Tel, M_Status)
-        VALUES('','".$_POST['Fname']."','".$_POST['Lname']."','".$_POST['user']."','".$_POST['pass']."','".$_POST['Add']."','".$_POST['Phone']."','2')";
+        VALUES(null,'".$_POST['Fname']."','".$_POST['Lname']."','".$username."','".$password."','".$_POST['Add']."','".$_POST['Phone']."','2')";
 $query = $condb->query($sql);
 if($query){
         echo "<script>";

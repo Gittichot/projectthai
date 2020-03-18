@@ -1,14 +1,10 @@
 <?php
 session_start();
 include '../../condb.php';
-$sql = "SELECT * FROM buy AS A  
-LEFT JOIN member AS B 
-ON A.Mem_id = B.id";
-$sql2 = "SELECT * FROM buy AS A 
-LEFT JOIN stock_product AS B 
-ON A.P_id = B.P_id";
+$sql = "SELECT * FROM buy AS A LEFT JOIN member AS B ON A.Mem_id = B.id LEFT JOIN stock_product AS C ON A.P_id = C.P_id";
+$pro ="SELECT * FROM stock_product";
 $query = $condb->query($sql);
-$query2 = $condb->query($sql2);
+$product = $condb->query($pro);
 ?>
 <!doctype html>
 <html lang="en">

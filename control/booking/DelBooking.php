@@ -2,17 +2,9 @@
 session_start();
 include '../../condb.php';
 $id = $_GET['delid'];
-$sqldel = "DELETE FROM booking_detail WHERE Bo_id = '$id'";
-$querydel = $condb->query($sqldel);
-if($querydel){
-    echo "<script>";
-    echo "alert('ลบข้อมูลเรียบร้อยแล้ว');";
-    echo "window.location='../../Main_Admin.php';";
-    echo "</script>";
-}else{
-    echo "<script>";
-    echo "alert('ไม่สามารถลบข้อมูลได้)";
-    echo "window.location='../../Main_Admin.php';";
-    echo "</script>";
-}
+$booking = "SELECT * FROM booking AS A INNER JOIN booking_detail AS B ON A.Bo_id = B.Boo_id WHERE Bo_id = '".$id."'";
+$querybo = $condb->query($booking);
+$row = mysqli_fetch_array($querybo,MYSQLI_ASSOC);
+$pid = $row["P_id"];
+$quantity = $row["Boo_amount"];
 ?>

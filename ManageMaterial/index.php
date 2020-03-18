@@ -1,6 +1,51 @@
 <?php
 session_start();
 include '../condb.php';
+// ฟังก์ชันนับเดือน
+$now = new \DateTime('now');
+$month = $now->format('m');
+// ฟังก์ชันนับปี พ.ศ.ป
+$now = new \DateTime('now');
+$year = $now->format('Y');
+// ฟังก์ชันนับวัน
+$d = cal_days_in_month(CAL_GREGORIAN, $month, $year);
+
+// หาจำนวนของข้อมูลรายปีแบบ array
+$sql_check_stock_year = "SELECT SUM(A.mt_amount) AS Total FROM material_order AS A WHERE YEAR(A.mt_buydate) = '" . $year . "' GROUP BY A.mt_name";
+$result_check_stock_year = $condb->query($sql_check_stock_year);
+$stock_year =[];
+while($query_stock_year = mysqli_fetch_array($result_check_stock_year, MYSQLI_ASSOC))
+{
+    $stock_year[]= $query_stock_year["Total"];
+}
+echo count($stock_year)."<br>";
+for ($i = 0; $i < count($stock_year); $i++) {
+    echo $stock_year[$i], ", ";
+}
+echo "<br>";
+
+// หาจำนวนของข้อมูลรายเดือนแบบ array
+$sql_check_stock_month = "SELECT SUM(A.mt_amount) AS Total FROM material_order AS A WHERE MONTH(A.mt_buydate) = '" . $month . "' AND YEAR(A.mt_buydate) = '" . $year . "' GROUP BY A.mt_name";
+$result_check_stock_month = $condb->query($sql_check_stock_month);
+$stock_month =[];
+while ($query = mysqli_fetch_array($result_check_stock_month, MYSQLI_ASSOC)) {
+    $stock_month[] = $query["Total"];
+}
+echo count($stock_month)."<br>";
+for ($i = 0; $i < count($stock_month); $i++) {
+    echo $stock_month[$i], ", ";
+}
+echo "<br>";
+// คำนวณ
+for ($i = 0; $i < count($stock_month); $i++) {
+    // หาค่าเฉลี่ย
+    $avg =  $stock_month[$i] / $d;
+    // หาค่าเบี่ยงเบน
+    $sd = (($stock_month[$i] - $avg)^2)/$stock_year[$i];
+    echo $avg." ".$sd."<br>";
+}
+
+
 $sql = "SELECT * FROM `material_stock`";
 $result = $condb->query($sql);
 ?>

@@ -15,16 +15,13 @@
 	          <span class="sr-only">Toggle Menu</span>
 	        </button>
         </div> -->
-	  		<h1><div class="logo">Admin</div></h1>
+	  		<h1><div class="logo"><?php echo $_SESSION["status"]; ?></div></h1>
         <ul class="list-unstyled components mb-5">
           <li class="active">
-            <a href="../../Home.php"><span class="fa fa-home mr-3"></span> หน้าหลัก</a>
+            <a href="../../Mainadmin.php"><span class="fa fa-home mr-3"></span> หน้าหลัก</a>
           </li>
           <li>
               <a href="../Booking/Main.php"><span class="fa fa-shopping-cart mr-3"></span> หน้าการจองสินค้า</a>
-          </li>
-          <li>
-              <a href="../Add/Main.php"><span class="fa fa-shopping-cart mr-3"></span> เพิ่มการจองสินค้า</a>
           </li>
         </ul>
     	</nav>

@@ -1,8 +1,12 @@
 <?php
 session_start();
 include '../../condb.php';
-$sql = "SELECT * FROM booking AS A LEFT JOIN booking_detail AS B ON A.Bo_id = B.Boo_id";
+$sql = "SELECT * FROM booking AS A LEFT JOIN booking_detail AS B ON A.Bo_id = B.Boo_id LEFT JOIN get_type AS C ON B.Get_type = C.Get_id INNER JOIN member AS D ON A.M_id = D.id INNER JOIN stock_product AS E ON A.P_id = E.P_id";
 $query = $condb->query($sql);
+$product = "SELECT * FROM `stock_product`";
+$type = "SELECT * FROM `get_type`";
+$querypro = $condb->query($product);
+$querytype = $condb->query($type);
 ?>
 <!doctype html>
 <html lang="en">
