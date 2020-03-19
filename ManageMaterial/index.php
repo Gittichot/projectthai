@@ -15,62 +15,60 @@ $d = cal_days_in_month(CAL_GREGORIAN, $month, $year);
 // หาจำนวนของข้อมูลรายปีแบบ array
 $sql_check_stock_year = "SELECT SUM(A.mt_amount) AS Total FROM material_order AS A WHERE YEAR(A.mt_buydate) = '" . $year . "' GROUP BY A.mt_name";
 $result_check_stock_year = $condb->query($sql_check_stock_year);
-$stock_year =[];
-while($query_stock_year = mysqli_fetch_array($result_check_stock_year, MYSQLI_ASSOC))
-{
-    $stock_year[]= $query_stock_year["Total"];
+$stock_year = [];
+while ($query_stock_year = mysqli_fetch_array($result_check_stock_year, MYSQLI_ASSOC)) {
+    $stock_year[] = $query_stock_year["Total"];
 }
 // echo count($stock_year)."<br>";
 for ($i = 0; $i < count($stock_year); $i++) {
-    echo $stock_year[$i], ", ";
+    // สถิติต่อปี
+    // echo $stock_year[$i], ", ";
 }
- echo "<br>";
+//  echo "<br>";
 
 // หาจำนวนของข้อมูลรายเดือนแบบ array
 $sql_check_stock_month = "SELECT SUM(A.mt_amount) AS Total FROM material_order AS A WHERE MONTH(A.mt_buydate) = '" . $month . "' AND YEAR(A.mt_buydate) = '" . $year . "' GROUP BY A.mt_name";
 $result_check_stock_month = $condb->query($sql_check_stock_month);
-$stock_month =[];
+$stock_month = [];
 while ($query = mysqli_fetch_array($result_check_stock_month, MYSQLI_ASSOC)) {
     $stock_month[] = $query["Total"];
 }
 // echo count($stock_month)."<br>";
 for ($i = 0; $i < count($stock_month); $i++) {
-    echo $stock_month[$i], ", ";
+    // สถิติต่อเดือน
+    // echo $stock_month[$i], ", ";
 }
- echo "<br>";
+//  echo "<br>";
 // คำนวณ
 $avg_stock = [];
 for ($i = 0; $i < count($stock_month); $i++) {
     // หาค่าเฉลี่ยต่อวัน
     $avg[$i] =  ceil($stock_month[$i] / $d);
-    echo $avg[$i].",";
+    // echo"ค่าเฉลี่ย:";
+    // echo $avg[$i].",";
 }
 // เรียกข้อมูลจำนวนวัสดุในคลัง
 $sql_amount = "SELECT material_stock.mstock_name, material_stock.mstock_amount,material_stock.mstock_waittime FROM material_stock INNER JOIN material_order WHERE material_stock.mstock_name = material_order.mt_name GROUP BY material_stock.mstock_name";
 $result_amount = $condb->query($sql_amount);
-$stock_name =[];
-$stock_amount =[];
-$stock_wait = []; 
-while ($query_amount = mysqli_fetch_array($result_amount, MYSQLI_ASSOC)) 
-{
+$stock_name = [];
+$stock_amount = [];
+$stock_wait = [];
+while ($query_amount = mysqli_fetch_array($result_amount, MYSQLI_ASSOC)) {
     $stock_name[] = $query_amount["mstock_name"];
     $stock_amount[] = $query_amount["mstock_amount"];
     $stock_wait[] = $query_amount["mstock_waittime"];
 }
 $str = "";
 for ($i = 0; $i < count($stock_amount); $i++) {
-    if($stock_amount[$i]<$avg[$i])
-    {
-        $newstock = ceil($avg[$i]*$stock_wait[$i]*1.1);//1.1คือ 110%
-        $str = $str. " สินค้า : ".$stock_name[$i]." มีจำนวน : ".$stock_amount[$i]." ชิ้น ควรซื้อเพิ่มอย่างน้อย : ".$newstock. " ชิ้น \\n";
+    if ($stock_amount[$i] < $avg[$i]) {
+        $newstock = ceil($avg[$i] * $stock_wait[$i] * 1.1); //1.1คือ 110%
+        $str = $str . " สินค้า : " . $stock_name[$i] . " มีจำนวน : " . $stock_amount[$i] . " ชิ้น ควรซื้อเพิ่มอย่างน้อย : " . $newstock . " ชิ้น \\n";
     }
-    echo $stock_name[$i].",".$stock_amount[$i]."<br>";
+    // echo $stock_name[$i].",".$stock_amount[$i]."<br>";
 }
-if($str!="")
-{
-    echo "<script> alert('".$str."')</script>";
+if ($str != "") {
+    echo "<script> alert('" . $str . "')</script>";
 }
-echo $str;
 
 // เรียกข้อมูลมาโชว์ในตาราง
 $sql = "SELECT * FROM `material_stock`";
@@ -118,7 +116,24 @@ $result = $condb->query($sql);
 
     <script src="<?= JS ?>/js/popper.js"></script>
     <script src="<?= JS ?>/js/bootstrap.min.js"></script>
+    <script>
+        $('.btn-logout').click(function() {
+            $('.logged-in').fadeOut(function() {
+                $('.welcome-text').fadeIn();
+                // Notification
+                $('.notification.logged-out').removeClass('bounceOutRight notification-show animated bounceInRight');
+                // show notification
+                $('.notification.logged-out').addClass('notification-show animated bounceInRight');
+
+                $('.notification.logged-out').one('webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend', function() {
+                    setTimeout(function() {
+                        $('.notification.logged-out').addClass('animated bounceOutRight');
+                    }, 2000);
+                });
+
+            });
+        });
+    </script>
 </body>
 
 </html>
-</head>
