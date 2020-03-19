@@ -20,8 +20,8 @@
           <li class="">
             <a href="../Mainadmin.php"><span class="fa fa-home mr-3"></span> หน้าหลัก</a>
           </li>
-		  <li class="active">
-				<a href=""><span class="fa fa-folder-open mr-3"></span> จัดการวัสดุ</a>
+		  <li class="">
+				<a href="../"><span class="fa fa-folder-open mr-3"></span> จัดการวัสดุ</a>
 			</li>
 			<li class="">
 				<a href="come_in/MatOrder_create.php"><span class="fa fa-cart-plus mr-3"></span> สั่งซื้อวัสดุ</a>

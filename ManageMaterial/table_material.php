@@ -29,7 +29,7 @@
 							<td><?php echo $row['mstock_name']; ?></td>
 							<td><?php echo $row['mstock_amount']; ?></td>
 							<td><?php echo $row['mstock_location']; ?></td>
-							<td><?php echo $row['mstock_waittime']; ?></td>
+							<td><?php echo $row['mstock_waittime']; ?> วัน</td>
 							<td>
 								<a href="product_manage/edit_product.php?id=<?php echo $row['id']; ?>" class="btn btn-sm btn-warning ">
 									<i class="fa fa-pencil-square-o"></i> แก้ไข

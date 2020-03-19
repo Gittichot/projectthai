@@ -26,44 +26,32 @@ $result = $condb->query($sql);
      * ตรวจสอบเงื่อนไขที่ว่า ตัวแปร $_POST['submit'] ได้ถูกกำหนดขึ้นมาหรือไม่
      */
     if (isset($_POST['submit'])) {
-        $sql = "INSERT INTO `material_order`(`mt_buydate`, `mt_name`, `mt_amount`, `mt_UnitPrice`, `mt_price`, `mt_location`, `mtype_id`, `dl_id`) 
-        VALUES ('" . $_POST['mt_buydate'] . "',
-                '" . $_POST['mt_name'] . "', 
-                '" . $_POST['mt_amount'] . "', 
-                '" . $_POST['mt_UnitPrice'] . "', 
-                '" . $_POST['mt_price'] . "', 
-                '" . $_POST['mt_location'] . "', 
-                '1', 
-                '" . $_POST['dl_id'] . "');";
-
-        $result = $condb->query($sql);
         /**
          * กำหนดตัวแปรเพื่อมารับค่า
          */
-        $mt_name =  $_POST['mt_name'];
-        $mt_amount =  $_POST['mt_amount'];
+        $mstock_name =  $_POST['mstock_name'];
+        $mstock_location =  $_POST['mstock_location'];
+        $mstock_waittime = $_POST['mstock_waittime'];
         // เช็คว่าข้อมูลซ้ำไหม
-        $sql_check_stockname = "SELECT * FROM `material_stock` WHERE mstock_name =  '" . $mt_name . "'";
+        $sql_check_stockname = "SELECT * FROM `material_stock` WHERE mstock_name =  '" . $mstock_name . "'";
         $check_stockname = $condb->query($sql_check_stockname);
 
-        //ถ้าข้อมูลซ้ำให้ทำการ UPDATE 
-        if ($check_stockname->num_rows > 0) {
-            $data = $check_stockname->fetch_assoc();
-            $mt_amount += $data["mstock_amount"];
-            $sql_UPDATE_mat_order = "UPDATE material_stock SET mstock_amount='{$mt_amount}',mstock_location ='" . $_POST['mt_location'] . "' WHERE mstock_id={$data['mstock_id']}";
-            $result_UPDATE_mat_order = $condb->query($sql_UPDATE_mat_order);
-        } else {
-            $sql_INSERT_mat_order = "INSERT INTO `material_stock`(`mstock_name`, `mstock_amount`, `mstock_location`) 
-                            VALUES ('" . $_POST['mt_name'] . "', 
-                                    '" . $_POST['mt_amount'] . "', 
-                                    '" . $_POST['mt_location'] . "');";
+        //ตรวจสอบชื่อวัสดุซ้ำหรือไม่
+        if (!$check_stockname->num_rows > 0) {
+            $sql_INSERT_mat_order = "INSERT INTO `material_stock`(`mstock_name`, `mstock_location`, `mstock_waittime`) 
+                            VALUES ('" . $mstock_name. "', 
+                                    '" . $mstock_location . "', 
+                                    '" . $mstock_waittime. "');";
             $result_INSERT_mat_order = $condb->query($sql_INSERT_mat_order);
-        }
-        if ($result_UPDATE_mat_order == TRUE or $result_INSERT_mat_order == TRUE) {
-            echo '<script> alert("สั่งซื้อวัสดุสำเร็จ!")</script>';
-            header('Refresh:0; url=../');
+            if ($result_INSERT_mat_order == TRUE) {
+                echo '<script> alert("เพิ่มข้อมูลวัสดุสำเร็จ !")</script>';
+                header('Refresh:0; url=../');
+            } else {
+                echo '<script> alert("เพิ่มข้อมูลวัสดุไม่สำเร็จ!")</script>';
+                header('Refresh:0;');
+            }
         } else {
-            echo '<script> alert("สั่งซื้อวัสดุไม่สำเร็จ!")</script>';
+            echo '<script> alert("มีข้อมูลนี้อยู่ในระบบแล้ว!")</script>';
             header('Refresh:0;');
         }
     }
@@ -76,8 +64,6 @@ $result = $condb->query($sql);
     <div id="content" class="p-4 p-md-5 pt-5">
         <!-- Table Member -->
         <?php include 'form_add.php'; ?>
-
-
     </div>
     </div>
 

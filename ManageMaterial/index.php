@@ -4,9 +4,11 @@ include '../condb.php';
 // ฟังก์ชันนับเดือน
 $now = new \DateTime('now');
 $month = $now->format('m');
+
 // ฟังก์ชันนับปี พ.ศ.ป
 $now = new \DateTime('now');
 $year = $now->format('Y');
+
 // ฟังก์ชันนับวัน
 $d = cal_days_in_month(CAL_GREGORIAN, $month, $year);
 
@@ -18,11 +20,11 @@ while($query_stock_year = mysqli_fetch_array($result_check_stock_year, MYSQLI_AS
 {
     $stock_year[]= $query_stock_year["Total"];
 }
-echo count($stock_year)."<br>";
+// echo count($stock_year)."<br>";
 for ($i = 0; $i < count($stock_year); $i++) {
     echo $stock_year[$i], ", ";
 }
-echo "<br>";
+ echo "<br>";
 
 // หาจำนวนของข้อมูลรายเดือนแบบ array
 $sql_check_stock_month = "SELECT SUM(A.mt_amount) AS Total FROM material_order AS A WHERE MONTH(A.mt_buydate) = '" . $month . "' AND YEAR(A.mt_buydate) = '" . $year . "' GROUP BY A.mt_name";
@@ -31,21 +33,46 @@ $stock_month =[];
 while ($query = mysqli_fetch_array($result_check_stock_month, MYSQLI_ASSOC)) {
     $stock_month[] = $query["Total"];
 }
-echo count($stock_month)."<br>";
+// echo count($stock_month)."<br>";
 for ($i = 0; $i < count($stock_month); $i++) {
     echo $stock_month[$i], ", ";
 }
-echo "<br>";
+ echo "<br>";
 // คำนวณ
+$avg_stock = [];
 for ($i = 0; $i < count($stock_month); $i++) {
-    // หาค่าเฉลี่ย
-    $avg =  $stock_month[$i] / $d;
-    // หาค่าเบี่ยงเบน
-    $sd = (($stock_month[$i] - $avg)^2)/$stock_year[$i];
-    echo $avg." ".$sd."<br>";
+    // หาค่าเฉลี่ยต่อวัน
+    $avg[$i] =  ceil($stock_month[$i] / $d);
+    echo $avg[$i].",";
 }
+// เรียกข้อมูลจำนวนวัสดุในคลัง
+$sql_amount = "SELECT material_stock.mstock_name, material_stock.mstock_amount,material_stock.mstock_waittime FROM material_stock INNER JOIN material_order WHERE material_stock.mstock_name = material_order.mt_name GROUP BY material_stock.mstock_name";
+$result_amount = $condb->query($sql_amount);
+$stock_name =[];
+$stock_amount =[];
+$stock_wait = []; 
+while ($query_amount = mysqli_fetch_array($result_amount, MYSQLI_ASSOC)) 
+{
+    $stock_name[] = $query_amount["mstock_name"];
+    $stock_amount[] = $query_amount["mstock_amount"];
+    $stock_wait[] = $query_amount["mstock_waittime"];
+}
+$str = "";
+for ($i = 0; $i < count($stock_amount); $i++) {
+    if($stock_amount[$i]<$avg[$i])
+    {
+        $newstock = ceil($avg[$i]*$stock_wait[$i]*1.1);//1.1คือ 110%
+        $str = $str. " สินค้า : ".$stock_name[$i]." มีจำนวน : ".$stock_amount[$i]." ชิ้น ควรซื้อเพิ่มอย่างน้อย : ".$newstock. " ชิ้น \\n";
+    }
+    echo $stock_name[$i].",".$stock_amount[$i]."<br>";
+}
+if($str!="")
+{
+    echo "<script> alert('".$str."')</script>";
+}
+echo $str;
 
-
+// เรียกข้อมูลมาโชว์ในตาราง
 $sql = "SELECT * FROM `material_stock`";
 $result = $condb->query($sql);
 ?>
