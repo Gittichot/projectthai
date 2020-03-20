@@ -3,6 +3,11 @@ session_start();
 include '../../condb.php';
 $sql = "SELECT * FROM dealer";
 $result = $condb->query($sql);
+
+$sql_stockname = "SELECT * FROM material_stock";
+$result_stockname = $condb->query($sql_stockname);
+
+
 ?>
 <!doctype html>
 <html lang="en">
@@ -26,13 +31,14 @@ $result = $condb->query($sql);
      * ตรวจสอบเงื่อนไขที่ว่า ตัวแปร $_POST['submit'] ได้ถูกกำหนดขึ้นมาหรือไม่
      */
     if (isset($_POST['submit'])) {
+        
         $sql = "INSERT INTO `material_order`(`mt_buydate`, `mt_name`, `mt_amount`, `mt_UnitPrice`, `mt_price`, `mt_location`, `mtype_id`, `dl_id`) 
         VALUES ('" . $_POST['mt_buydate'] . "',
-                '" . $_POST['mt_name'] . "', 
+                '" . $_POST['mstock_name'] . "', 
                 '" . $_POST['mt_amount'] . "', 
                 '" . $_POST['mt_UnitPrice'] . "', 
                 '" . $_POST['mt_price'] . "', 
-                '" . $_POST['mt_location'] . "', 
+                '" . $_POST['mt_location'] . "',
                 '1', 
                 '" . $_POST['dl_id'] . "');";
 

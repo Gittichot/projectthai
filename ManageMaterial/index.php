@@ -47,6 +47,7 @@ for ($i = 0; $i < count($stock_month); $i++) {
     // echo"ค่าเฉลี่ย:";
     // echo $avg[$i].",";
 }
+// echo "<br>";
 // เรียกข้อมูลจำนวนวัสดุในคลัง
 $sql_amount = "SELECT material_stock.mstock_name, material_stock.mstock_amount,material_stock.mstock_waittime FROM material_stock INNER JOIN material_order WHERE material_stock.mstock_name = material_order.mt_name GROUP BY material_stock.mstock_name";
 $result_amount = $condb->query($sql_amount);
@@ -96,9 +97,7 @@ $result = $condb->query($sql);
     <div id="content" class="p-4 p-md-5 pt-5">
         <!-- Table Member -->
         <?php include 'table_material.php'; ?>
-        <!-- Chart Content  -->
-
-        <!-- END Table Member  -->
+        
         <!-- END Page Content  -->
     </div>
     <!-- JQuery -->
@@ -113,7 +112,6 @@ $result = $condb->query($sql);
 
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
     <script src="<?= JS ?>main.js"></script>
-
     <script src="<?= JS ?>/js/popper.js"></script>
     <script src="<?= JS ?>/js/bootstrap.min.js"></script>
     <script>
@@ -133,6 +131,11 @@ $result = $condb->query($sql);
 
             });
         });
+        function deleteItem(id) {
+            if (confirm('คุณต้องการลบข้อมูลใช่หรือไม่') == true) {
+                window.location = `Del/del_mat.php?id=${id}`;
+            }
+        };
     </script>
 </body>
 

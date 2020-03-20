@@ -1,8 +1,15 @@
 <?php
 session_start();
 include '../../condb.php';
-$sql = "SELECT * FROM dealer";
+$mstock_id = $_GET['id'];
+$sql = "SELECT * FROM `material_stock` WHERE `mstock_id` = '" . $mstock_id . "'  "; 
 $result = $condb->query($sql);
+$row = $result->fetch_assoc();
+
+if( empty($row) ){
+    echo '<script> alert("ไม่พบข้อมูลที่ต้องการแก้ไข !")</script>';
+    echo '<script> window.location = "../"</script>';
+}
 ?>
 <!doctype html>
 <html lang="en">
@@ -29,6 +36,7 @@ $result = $condb->query($sql);
         /**
          * กำหนดตัวแปรเพื่อมารับค่า
          */
+        $mstock_id = $_POST['mstock_id'];
         $mstock_name =  $_POST['mstock_name'];
         $mstock_location =  $_POST['mstock_location'];
         $mstock_waittime = $_POST['mstock_waittime'];
@@ -36,24 +44,38 @@ $result = $condb->query($sql);
         $sql_check_stockname = "SELECT * FROM `material_stock` WHERE mstock_name =  '" . $mstock_name . "'";
         $check_stockname = $condb->query($sql_check_stockname);
 
-        //ตรวจสอบชื่อวัสดุซ้ำหรือไม่
-        if (!$check_stockname->num_rows > 0) {
-            $sql_INSERT_mat_order = "INSERT INTO `material_stock`(`mstock_name`, `mstock_location`, `mstock_waittime`) 
-                            VALUES ('" . $mstock_name. "', 
-                                    '" . $mstock_location . "', 
-                                    '" . $mstock_waittime. "');";
-            $result_INSERT_mat_order = $condb->query($sql_INSERT_mat_order);
-            if ($result_INSERT_mat_order == TRUE) {
-                echo '<script> alert("เพิ่มข้อมูลวัสดุสำเร็จ !")</script>';
-                header('Refresh:0; url=../');
-            } else {
-                echo '<script> alert("เพิ่มข้อมูลวัสดุไม่สำเร็จ!")</script>';
-                header('Refresh:0;');
-            }
-        } else {
+        $check = true;
+        if( $_POST["mstock_name_old"] == $mstock_name ){
+            $check = false;
+        }
+
+        if( !empty($check_stockname->num_rows) && $check ){
             echo '<script> alert("มีข้อมูลนี้อยู่ในระบบแล้ว!")</script>';
             header('Refresh:0;');
+            exit;
         }
+
+        //ตรวจสอบชื่อวัสดุซ้ำหรือไม่
+            $sql_update_mat= "UPDATE `material_stock` 
+                                 SET `mstock_name`= '" . $mstock_name . "',
+                                     `mstock_location`= '" . $mstock_location . "',
+                                     `mstock_waittime`= '" . $mstock_waittime . "' 
+                            WHERE mstock_id = '" . $mstock_id . "';";
+            
+            $result_update_mat = $condb->query($sql_update_mat);
+            if ($result_update_mat) {
+                #UPDATE ORDER
+                $sql_update_order = "UPDATE `material_order` 
+                                        SET `mt_name`= '" . $mstock_name . "'
+                                    WHERE `mt_name` = '".$_POST["mstock_name_old"]."'";
+                $condb->query($sql_update_order);
+
+                echo '<script> alert("แก้ไขข้อมูลสำเร็จ !")</script>';
+                header('Refresh:0; url=../');
+            } else {
+                echo '<script> alert("แก้ไขข้อมูลไม่สำเร็จ!")</script>';
+                header('Refresh:0;');
+            }
     }
     ?>
 </head>
@@ -63,7 +85,7 @@ $result = $condb->query($sql);
     <!-- Page Content  -->
     <div id="content" class="p-4 p-md-5 pt-5">
         <!-- Table Member -->
-        <?php include 'form_add.php'; ?>
+        <?php include 'form_edit.php'; ?>
     </div>
     </div>
 

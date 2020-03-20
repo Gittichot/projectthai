@@ -8,7 +8,14 @@
 				<div class="form-group row">
 					<label for="pname" class="col-sm-3 col-form-label">ชื่อสินค้า</label>
 					<div class="col-sm-9">
-						<input type="text" class="form-control" id="mt_name" name="mt_name" required>
+						<select class="form-control" id="mstock_name" name="mstock_name" required>
+							<option value="" disabled selected>----- กรุณาเลือก -----</option>
+							<?php
+							while ($row = $result_stockname->fetch_assoc()) {
+							?>
+								<option value="<?php echo $row['mstock_name']; ?>"><?php echo $row["mstock_name"]; ?></option>
+							<?php } ?>
+						</select>
 						<div class="invalid-feedback">
 							กรุณากรอกชื่อสินค้า
 						</div>
@@ -41,18 +48,6 @@
 						</div>
 					</div>
 				</div>
-				<div class="form-group row">
-					<label for="loation" class="col-sm-3 col-form-label">ที่จัดเก็บสินค้า</label>
-					<div class="col-sm-9">
-						<input type="text" class="form-control" id="mt_location" name="mt_location" rows="4" required></input>
-						<div class="invalid-feedback">
-							กรุณากรอกที่จัดเก็บสินค้า
-						</div>
-					</div>
-				</div>
-				<?php
-
-				?>
 				<div class="form-group row">
 					<label for="dl_id" class="col-sm-3 col-form-label">เลือกผู้จำหน่ายสินค้า</label>
 					<div class="col-sm-9">

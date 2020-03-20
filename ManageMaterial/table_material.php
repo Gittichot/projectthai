@@ -1,6 +1,6 @@
 <!-- <div id="content" class="p-4 p-md-5 pt-5"> -->
 <div class="card mb-4">
-	<div class="card-header"><i class="fa fa-table mr-1"></i>ตารางข้อมูล วัสดุ</div>
+	<div class="card-header"><i class="fa fa-table mr-1"></i>ตารางข้อมูลวัสดุ</div>
 	<div class="card-body">
 		<div class="d-flex align-items-end flex-column bd-highlight mb-3">
 			<a class="btn btn-success" href="Add/add_mat.php">เพิ่มข้อมูลสินค้า</a>
@@ -31,12 +31,12 @@
 							<td><?php echo $row['mstock_location']; ?></td>
 							<td><?php echo $row['mstock_waittime']; ?> วัน</td>
 							<td>
-								<a href="product_manage/edit_product.php?id=<?php echo $row['id']; ?>" class="btn btn-sm btn-warning ">
+								<a href="Edit/edit_mat.php?id=<?php echo $row['mstock_id']; ?>" class="btn btn-sm btn-warning ">
 									<i class="fa fa-pencil-square-o"></i> แก้ไข
 								</a>
 							</td>
 							<td>
-								<a href="product_manage/detail.php?id=<?php echo $row['id']; ?>" class="btn btn-sm btn-danger ">
+								<a href="#" onclick="deleteItem(<?php echo $row['mstock_id']; ?>);" class="btn btn-sm btn-danger">
 									<i class="fas fa-trash-alt"></i> ลบ
 								</a>
 							</td>
