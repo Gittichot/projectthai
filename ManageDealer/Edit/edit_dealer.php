@@ -4,8 +4,8 @@ if (!$_SESSION['id']) {
     header("Location:../");
   } else {
 include '../../condb.php';
-$mstock_id = $_GET['id'];
-$sql = "SELECT * FROM `material_stock` WHERE `mstock_id` = '" . $mstock_id . "'  "; 
+$dl_id = $_GET['id'];
+$sql = "SELECT * FROM `dealer` WHERE `dl_id` = '" . $dl_id . "'  "; 
 $result = $condb->query($sql);
 $row = $result->fetch_assoc();
 
@@ -39,16 +39,15 @@ if( empty($row) ){
         /**
          * กำหนดตัวแปรเพื่อมารับค่า
          */
-        $mstock_id = $_POST['mstock_id'];
-        $mstock_name =  $_POST['mstock_name'];
-        $mstock_location =  $_POST['mstock_location'];
-        $mstock_waittime = $_POST['mstock_waittime'];
+        $dl_id = $_POST['dl_id'];
+        $dl_name =  $_POST['dl_name'];
+        $dl_phone =  $_POST['dl_phone'];
         // เช็คว่าข้อมูลซ้ำไหม
-        $sql_check_stockname = "SELECT * FROM `material_stock` WHERE mstock_name =  '" . $mstock_name . "'";
+        $sql_check_stockname = "SELECT * FROM `dealer` WHERE dl_name =  '" . $dl_name . "'";
         $check_stockname = $condb->query($sql_check_stockname);
 
         $check = true;
-        if( $_POST["mstock_name_old"] == $mstock_name ){
+        if( $_POST["dl_name_old"] == $dl_name ){
             $check = false;
         }
 
@@ -57,22 +56,15 @@ if( empty($row) ){
             header('Refresh:0;');
             exit;
         }
-
         //ตรวจสอบชื่อวัสดุซ้ำหรือไม่
-            $sql_update_mat= "UPDATE `material_stock` 
-                                 SET `mstock_name`= '" . $mstock_name . "',
-                                     `mstock_location`= '" . $mstock_location . "',
-                                     `mstock_waittime`= '" . $mstock_waittime . "' 
-                            WHERE mstock_id = '" . $mstock_id . "';";
+            $sql_update_dealer= "UPDATE `dealer`
+                                 SET `dl_name`= '" . $dl_name . "',
+                                     `dl_phone`= '" . $dl_phone . "'
+                            WHERE dl_id = '" . $dl_id . "';";
             
-            $result_update_mat = $condb->query($sql_update_mat);
-            if ($result_update_mat) {
-                #UPDATE ORDER
-                $sql_update_order = "UPDATE `material_order` 
-                                        SET `mt_name`= '" . $mstock_name . "'
-                                    WHERE `mt_name` = '".$_POST["mstock_name_old"]."'";
-                $condb->query($sql_update_order);
-
+            $result_update_dealer = $condb->query($sql_update_dealer);
+            echo $result_update_dealer;
+            if ($result_update_dealer) {
                 echo '<script> alert("แก้ไขข้อมูลสำเร็จ !")</script>';
                 header('Refresh:0; url=../');
             } else {

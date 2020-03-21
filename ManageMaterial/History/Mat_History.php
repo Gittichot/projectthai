@@ -1,5 +1,8 @@
 <?php
 session_start();
+if (!$_SESSION['id']) {
+    header("Location:../");
+  } else {
 include('../../condb.php');
 $sql = "SELECT * FROM `material_order` ";
 $query = $condb->query($sql);
@@ -48,3 +51,4 @@ $query = $condb->query($sql);
 </body>
 
 </html>
+  <?PHP } ?>

@@ -1,6 +1,6 @@
 <!-- <div id="content" class="p-4 p-md-5 pt-5"> -->
 <div class="card mb-4">
-	<div class="card-header">การสั่งซื้อวัสดุ</div>
+	<div class="card-header">เพิ่มข้อมูลวัสดุ</div>
 	<div class="card-body">
 		<div class="col-md-8 mx-auto">
 			<form class="was-validated" action="" method="POST" enctype="multipart/form-data">

@@ -1,6 +1,6 @@
 <!-- <div id="content" class="p-4 p-md-5 pt-5"> -->
 <div class="card mb-4">
-	<div class="card-header"><i class="fa fa-table mr-1"></i>ตารางข้อมูลการสั่งซื้อวัสดุ</div>
+	<div class="card-header"><i class="fa fa-table mr-1"></i>ตารางประวัติการสั่งซื้อวัสดุ</div>
 	<div class="card-body">
 		<div class="table-responsive">
 			<table class="table table-bordered text-center DataTable" id="homeTable" ="100%" cellspacing="0">

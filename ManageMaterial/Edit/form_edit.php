@@ -1,10 +1,10 @@
 <!-- <div id="content" class="p-4 p-md-5 pt-5"> -->
 <div class="card mb-4">
-	<div class="card-header">การสั่งซื้อวัสดุ</div>
+	<div class="card-header">แก้ไขข้อมูลวัสดุ</div>
 	<div class="card-body">
 		<div class="col-md-8 mx-auto">
 			<form class="was-validated" action="" method="POST" enctype="multipart/form-data">
-				<input type="text" class="form-control" id="mstock_id" name="mstock_id" value="<?php echo $row["mstock_id"]; ?>" hidden>
+				<input type="hidden" class="form-control" id="mstock_id" name="mstock_id" value="<?php echo $row["mstock_id"]; ?>" >
 				<div class="form-group row">
 					<label for="pname" class="col-sm-3 col-form-label">ชื่อสินค้า</label>
 					<div class="col-sm-9">

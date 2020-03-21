@@ -32,25 +32,23 @@ if (!$_SESSION['id']) {
             /**
              * กำหนดตัวแปรเพื่อมารับค่า
              */
-            $mstock_name =  $_POST['mstock_name'];
-            $mstock_location =  $_POST['mstock_location'];
-            $mstock_waittime = $_POST['mstock_waittime'];
+            $dl_name =  $_POST['dl_name'];
+            $dl_phone =  $_POST['dl_phone'];
             // เช็คว่าข้อมูลซ้ำไหม
-            $sql_check_stockname = "SELECT * FROM `material_stock` WHERE mstock_name =  '" . $mstock_name . "'";
-            $check_stockname = $condb->query($sql_check_stockname);
+            $sql_checkname = "SELECT * FROM `dealer` WHERE dl_name =  '" . $dl_name . "'";
+            $check_name = $condb->query($sql_checkname);
 
             //ตรวจสอบชื่อวัสดุซ้ำหรือไม่
-            if (!$check_stockname->num_rows > 0) {
-                $sql_INSERT_mat_order = "INSERT INTO `material_stock`(`mstock_name`, `mstock_location`, `mstock_waittime`) 
-                            VALUES ('" . $mstock_name . "', 
-                                    '" . $mstock_location . "', 
-                                    '" . $mstock_waittime . "');";
-                $result_INSERT_mat_order = $condb->query($sql_INSERT_mat_order);
-                if ($result_INSERT_mat_order == TRUE) {
-                    echo '<script> alert("เพิ่มข้อมูลวัสดุสำเร็จ !")</script>';
+            if (!$check_name->num_rows > 0) {
+                $sql_insert_dealer = "INSERT INTO `dealer`(`dl_name`, `dl_phone`) 
+                            VALUES ('" . $dl_name . "', 
+                                    '" . $dl_phone . "');";
+                $result_insert_dealer= $condb->query($sql_insert_dealer);
+                if ($result_insert_dealer == TRUE) {
+                    echo '<script> alert("เพิ่มข้อมูลผู้จำหน่ายสำเร็จ !")</script>';
                     header('Refresh:0; url=../');
                 } else {
-                    echo '<script> alert("เพิ่มข้อมูลวัสดุไม่สำเร็จ!")</script>';
+                    echo '<script> alert("เพิ่มข้อมูลผู้จำหน่ายไม่สำเร็จ!")</script>';
                     header('Refresh:0;');
                 }
             } else {
