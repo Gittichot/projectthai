@@ -20,19 +20,19 @@
 		</h1>
 		<ul class="list-unstyled components mb-5">
 			<li class="">
-				<a href="../Mainadmin.php"><span class="fa fa-home mr-3"></span> หน้าหลัก</a>
+				<a href="../../Mainadmin.php"><span class="fa fa-home mr-3"></span> หน้าหลัก</a>
+			</li>
+			<li class="">
+				<a href="../"><span class="fa fa-folder-open mr-3"></span> จัดการวัสดุ</a>
+			</li>
+			<li class="">
+				<a href="../Come_in/MatOrder_create.php"><span class="fa fa-cart-plus mr-3"></span> สั่งซื้อวัสดุ</a>
+			</li>
+			<li class="">
+				<a href="../History/Mat_History.php"><span class="fa fa-history mr-3"></span> ประวัติการสั่งซื้อวัสดุ</a>
 			</li>
 			<li class="active">
-				<a href="#"><span class="fa fa-folder-open mr-3"></span> จัดการวัสดุ</a>
-			</li>
-			<li class="">
-				<a href="Come_in/MatOrder_create.php"><span class="fa fa-cart-plus mr-3"></span> สั่งซื้อวัสดุ</a>
-			</li>
-			<li class="">
-				<a href="History/Mat_History.php"><span class="fa fa-history mr-3"></span> ประวัติการสั่งซื้อวัสดุ</a>
-			</li>
-			<li class="">
-				<a href="Chart/main_chart.php"><span class="fa fa-bar-chart mr-3"></span> สถิติการสั่งซื้อวัสดุ</a>
+				<a href="#"><span class="fa fa-bar-chart mr-3"></span> สถิติการสั่งซื้อวัสดุ</a>
 			</li>
 		</ul>
 	</nav>

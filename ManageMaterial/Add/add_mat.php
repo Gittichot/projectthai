@@ -1,6 +1,6 @@
 <?php
-session_start();
-include '../../condb.php';
+    session_start();
+    include '../../condb.php';
 $sql = "SELECT * FROM dealer";
 $result = $condb->query($sql);
 ?>

@@ -30,10 +30,13 @@
             <a href="./ManageStock/Main.php"><span class="fa fa-archive mr-3"></span> การจัดการคลังสินค้า</a>
           </li>
           <li>
-            <a href="ManageMaterial/"><span class="fa fa-archive mr-3"></span> การจัดการวัสดุ</a>
+            <a href="ManageMaterial/"><span class="fa fa-archive mr-3"></span> การจัดการคลังวัสดุ</a>
           </li>
           <li>
-            <a href="./Report/Main.php"><span class="fa fa-file mr-3"></span> การจัดการครุภัณฑ์</a>
+            <a href="./Report/Main.php"><span class="fa fa-file mr-3"></span> การจัดการคลังครุภัณฑ์</a>
+          </li>
+          <li>
+              <a href="./ManageMember/Main.php"><span class="fa fa-user-circle mr-3"></span> จัดการผู้จำหน่าย</a>
           </li>
           <li>
             <a href="./Report/Main.php"><span class="fa fa-file mr-3"></span> รายงาน</a>

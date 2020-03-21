@@ -1,11 +1,21 @@
-<!DOCTYPE html>
-<html>
+<?PHP
+    session_start();
+    include('../../condb.php');
+?>
+<!doctype html>
+<html lang="en">
 
 <head>
-
+    <title>Main Admin</title>
     <meta charset="utf-8">
-
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700,800,900" rel="stylesheet">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto|Varela+Round" rel="stylesheet">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="<?= DataTables ?>datatables.css">
+    <link rel="stylesheet" href="<?= CSS ?>style.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
     <script src="http://code.highcharts.com/stock/highstock.js"></script>
     <script src="http://code.highcharts.com/stock/modules/exporting.js"></script>
@@ -18,7 +28,10 @@
                 $.ajax({ // get ค่า วันที่ ไปที่ไฟล์ test2.php
                     type: "GET",
                     url: "chart.php",
-                    data: {"year":year, "month":month},
+                    data: {
+                        "year": year,
+                        "month": month
+                    },
                     dataType: "xml",
                     beforeSend: function() {
                         $("#container").html("<center><img src=\"http://www.jlg.com/images/layout/loadingGif.gif\" alt=\"Loading...\"/></center>");
@@ -63,7 +76,7 @@
                         type: 'column'
                     },
                     title: {
-                        text: 'จำนวนวัสดุที่รับเข้า'
+                        text: 'จำนวนวัสดุที่รับเข้ามา'
                     },
                     subtitle: {
                         text: ''
@@ -104,12 +117,12 @@
                         enabled: true,
                         formatter: function() {
                             return '<b>' + this.series.name + '</b><br/>' +
-                                this.x + ': ' +this.y + ' จำนวน';
+                                this.x + ': ' + this.y + ' จำนวน';
                         }
 
                     },
-                    exporting:{
-                        enabled : false
+                    exporting: {
+                        enabled: false
                     },
                     series: []
                 };
@@ -118,13 +131,16 @@
     </script>
 </head>
 
-<body>
-    <center>
+<body class="sb-nav-fixed">
+    <?php include 'Sidebar.php'; ?>
+    <!-- Page Content  -->
+    <div id="content" class="p-4 p-md-5 pt-5">
+        <!-- Table Member -->
         <table>
             <tr>
                 <td>ปี : </td>
                 <td>
-                    <select name='year' id='year'>
+                    <select class="form-control" name='year' id='year'>
                         <option value='2020'>2020</option>
                         <option value='2019'>2019</option>
                         <option value='2018'>2018</option>
@@ -133,21 +149,33 @@
                 </td>
                 <td>เดือน : </td>
                 <td>
-                    <select name='month' id='month'>
-                    <option value=''>- ทุกเดือน -</option>
-                        <?php for($i=1; $i<=12; $i++){
-                            ?>
-                            <option value='<?=sprintf("%02d", $i)?>'><?=sprintf("%02d", $i)?></option>
-                            <?php
+                    <select select class="form-control" name='month' id='month'>
+                        <option value=''>- ทุกเดือน -</option>
+                        <?php for ($i = 1; $i <= 12; $i++) {
+                        ?>
+                            <option value='<?= sprintf("%02d", $i) ?>'><?= sprintf("%02d", $i) ?></option>
+                        <?php
                         }
                         ?>
                     </select>
                 </td>
-                <td><input type='button' id='btn1' name='btn1' value='ประมวลผล'></td>
+                <td><input class="btn btn-primary" type='button' id='btn1' name='btn1' value='ประมวลผล'></td>
             </tr>
         </table>
         <div id="container" style="min-width: 320px; height: 500px; margin: 0 auto"></div>
-    </center>
-</body>
+        <!-- END Page Content  -->
+    </div>
+    <!-- JQuery -->
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js" crossorigin="anonymous"></script>
+    <script src="./js/jquery.min.js"></script>
+    <!-- DataTable -->
+    <script src="<?= DataTables ?>datatables.min.js"></script>
+    <script src="<?= JS ?>datatable.js"></script>
+    <!-- Chart -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.js" crossorigin="anonymous"></script>
+    <script src="<?= JS ?>barchart.js"></script>
 
-</html>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
+    <script src="<?= JS ?>main.js"></script>
+    <script src="<?= JS ?>/js/popper.js"></script>
+    <script src="<?= JS ?>/js/bootstrap.min.js"></script>

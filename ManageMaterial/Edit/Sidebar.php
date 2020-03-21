@@ -30,7 +30,7 @@
 				<a href="History/Mat_History.php"><span class="fa fa-history mr-3"></span> ประวัติการสั่งซื้อวัสดุ</a>
 			</li>
 			<li class="">
-				<a href="./control/add/addpro.php"><span class="fa fa-bar-chart mr-3"></span> สถิติการสั่งซื้อวัสดุ</a>
+				<a href="../Chart/main_chart.php"><span class="fa fa-bar-chart mr-3"></span> สถิติการสั่งซื้อวัสดุ</a>
 			</li>
         </ul>
     	</nav>

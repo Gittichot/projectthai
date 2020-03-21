@@ -24,13 +24,13 @@
 				<a href="../"><span class="fa fa-folder-open mr-3"></span> จัดการวัสดุ</a>
 			</li>
 			<li class="active">
-				<a href=""><span class="fa fa-cart-plus mr-3"></span> สั่งซื้อวัสดุ</a>
+				<a href="#"><span class="fa fa-cart-plus mr-3"></span> สั่งซื้อวัสดุ</a>
 			</li>
 			<li class="">
 				<a href="../History/Mat_History.php"><span class="fa fa-history mr-3"></span> ประวัติการสั่งซื้อวัสดุ</a>
 			</li>
 			<li class="">
-				<a href="./control/add/addpro.php"><span class="fa fa-bar-chart mr-3"></span> สถิติการสั่งซื้อวัสดุ</a>
+				<a href="../Chart/main_chart.php"><span class="fa fa-bar-chart mr-3"></span> สถิติการสั่งซื้อวัสดุ</a>
 			</li>
         </ul>
     	</nav>

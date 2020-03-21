@@ -12,7 +12,6 @@
 						<th>จำนวน</th>
 						<th>ราคาต่อหน่วย</th>
 						<th>ราคารวม</th>
-						<th>ที่จัดเก็บ</th>
 						<th>ประเภท</th>
 						<th>ชื่อจำหน่าย</th>
 						<th>เบอร์โทรจำหน่าย</th>
@@ -27,7 +26,6 @@
                                     material_order.mt_amount,
                                     material_order.mt_UnitPrice,
                                     material_order.mt_price,
-                                    material_order.mt_location,
                                     mattype.mtype_name,
                                     dealer.dl_name,
                                     dealer.dl_phone
@@ -47,7 +45,6 @@
 							<td><?php echo $row['mt_amount']; ?></td>
 							<td><?php echo $row['mt_UnitPrice']; ?> บาท</td>
 							<td><?php echo $row['mt_price']; ?> บาท</td>
-							<td><?php echo $row['mt_location']; ?></td>
 							<td><?php echo $row['mtype_name']; ?></td>
 							<td><?php echo $row['dl_name']; ?></td>
 							<td><?php echo $row['dl_phone']; ?></td>

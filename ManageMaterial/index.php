@@ -13,7 +13,7 @@ $year = $now->format('Y');
 $d = cal_days_in_month(CAL_GREGORIAN, $month, $year);
 
 // หาจำนวนของข้อมูลรายปีแบบ array
-$sql_check_stock_year = "SELECT SUM(A.mt_amount) AS Total FROM material_order AS A WHERE YEAR(A.mt_buydate) = '" . $year . "' GROUP BY A.mt_name";
+$sql_check_stock_year = "SELECT SUM(material_order.mt_amount) AS Total, material_order.mt_name, material_stock.mstock_name FROM material_order INNER JOIN material_stock WHERE material_order.mt_name = material_stock.mstock_name AND YEAR(material_order.mt_buydate) = '".$year."' GROUP BY material_order.mt_name ";
 $result_check_stock_year = $condb->query($sql_check_stock_year);
 $stock_year = [];
 while ($query_stock_year = mysqli_fetch_array($result_check_stock_year, MYSQLI_ASSOC)) {
@@ -27,7 +27,7 @@ for ($i = 0; $i < count($stock_year); $i++) {
 //  echo "<br>";
 
 // หาจำนวนของข้อมูลรายเดือนแบบ array
-$sql_check_stock_month = "SELECT SUM(A.mt_amount) AS Total FROM material_order AS A WHERE MONTH(A.mt_buydate) = '" . $month . "' AND YEAR(A.mt_buydate) = '" . $year . "' GROUP BY A.mt_name";
+$sql_check_stock_month = "SELECT SUM(material_order.mt_amount) AS Total, material_order.mt_name, material_stock.mstock_name FROM material_order INNER JOIN material_stock WHERE material_order.mt_name = material_stock.mstock_name AND MONTH(material_order.mt_buydate) = '".$month."' AND YEAR(material_order.mt_buydate) = '".$year."' GROUP BY material_order.mt_name ";
 $result_check_stock_month = $condb->query($sql_check_stock_month);
 $stock_month = [];
 while ($query = mysqli_fetch_array($result_check_stock_month, MYSQLI_ASSOC)) {
