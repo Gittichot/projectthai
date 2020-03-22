@@ -40,14 +40,15 @@ if( empty($row) ){
          * กำหนดตัวแปรเพื่อมารับค่า
          */
         $dl_id = $_POST['dl_id'];
-        $dl_name =  $_POST['dl_name'];
+        $dl_fname =  $_POST['dl_fname'];
+        $dl_lname =  $_POST['dl_lname'];
         $dl_phone =  $_POST['dl_phone'];
         // เช็คว่าข้อมูลซ้ำไหม
-        $sql_check_stockname = "SELECT * FROM `dealer` WHERE dl_name =  '" . $dl_name . "'";
+        $sql_check_stockname = "SELECT * FROM `dealer` WHERE dl_name =  '" . $dl_fname . "' AND `dl_lname` =  '" . $dl_lname . "'";
         $check_stockname = $condb->query($sql_check_stockname);
 
         $check = true;
-        if( $_POST["dl_name_old"] == $dl_name ){
+        if( $_POST["dl_fname_old"] == $dl_fname ){
             $check = false;
         }
 
@@ -58,7 +59,8 @@ if( empty($row) ){
         }
         //ตรวจสอบชื่อวัสดุซ้ำหรือไม่
             $sql_update_dealer= "UPDATE `dealer`
-                                 SET `dl_name`= '" . $dl_name . "',
+                                 SET `dl_fname`= '" . $dl_fname . "',
+                                     `dl_lname`= '" . $dl_lname . "',
                                      `dl_phone`= '" . $dl_phone . "'
                             WHERE dl_id = '" . $dl_id . "';";
             

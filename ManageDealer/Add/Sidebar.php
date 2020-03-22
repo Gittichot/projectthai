@@ -20,7 +20,7 @@
 		</h1>
 		<ul class="list-unstyled components mb-5">
 			<li class="">
-				<a href="../Mainadmin.php"><span class="fa fa-home mr-3"></span> หน้าหลัก</a>
+				<a href="../../Mainadmin.php"><span class="fa fa-home mr-3"></span> หน้าหลัก</a>
 			</li>
 			<li class="">
 				<a href="../"><span class="fa fa-user-circle mr-3"></span> ข้อมูลผู้จำหน่าย</a>

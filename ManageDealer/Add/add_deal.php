@@ -32,18 +32,20 @@ if (!$_SESSION['id']) {
             /**
              * กำหนดตัวแปรเพื่อมารับค่า
              */
-            $dl_name =  $_POST['dl_name'];
+            $dl_fname =  $_POST["dl_fname"];
+            $dl_lname =  $_POST["dl_lname"];
             $dl_phone =  $_POST['dl_phone'];
             // เช็คว่าข้อมูลซ้ำไหม
-            $sql_checkname = "SELECT * FROM `dealer` WHERE dl_name =  '" . $dl_name . "'";
+            $sql_checkname = "SELECT * FROM `dealer` WHERE dl_fname =  '" . $dl_fname . "' AND dl_lname =  '" . $dl_lname . "'";
             $check_name = $condb->query($sql_checkname);
 
             //ตรวจสอบชื่อวัสดุซ้ำหรือไม่
             if (!$check_name->num_rows > 0) {
-                $sql_insert_dealer = "INSERT INTO `dealer`(`dl_name`, `dl_phone`) 
-                            VALUES ('" . $dl_name . "', 
+                $sql_insert_dealer = "INSERT INTO `dealer`(`dl_fname`,`dl_lname`,`dl_phone`)   
+                            VALUES ('" . $dl_fname . "',
+                                    '" . $dl_lname . "',
                                     '" . $dl_phone . "');";
-                $result_insert_dealer= $condb->query($sql_insert_dealer);
+                $result_insert_dealer = $condb->query($sql_insert_dealer);
                 if ($result_insert_dealer == TRUE) {
                     echo '<script> alert("เพิ่มข้อมูลผู้จำหน่ายสำเร็จ !")</script>';
                     header('Refresh:0; url=../');
@@ -53,7 +55,7 @@ if (!$_SESSION['id']) {
                 }
             } else {
                 echo '<script> alert("มีข้อมูลนี้อยู่ในระบบแล้ว!")</script>';
-                header('Refresh:0;');
+                header('Refresh:0; url=../');
             }
         }
         ?>

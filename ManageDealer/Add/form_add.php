@@ -4,20 +4,28 @@
 	<div class="card-body">
 		<div class="col-md-8 mx-auto">
 			<form class="was-validated" action="" method="POST" enctype="multipart/form-data">
-
 				<div class="form-group row">
-					<label for="pname" class="col-sm-3 col-form-label">ชื่อ-นามสกุล</label>
+					<label for="pname" class="col-sm-3 col-form-label">ชื่อ</label>
 					<div class="col-sm-9">
-						<input type="text" class="form-control" id="dl_name" name="dl_name" required>
+						<input type="text" class="form-control" id="dl_fname" name="dl_fname" required>
 						<div class="invalid-feedback">
-							กรุณากรอกชื่อ-นามสกุล
+							กรุณากรอกชื่อ
+						</div>
+					</div>
+				</div>
+				<div class="form-group row">
+					<label for="pname" class="col-sm-3 col-form-label">นามสกุล</label>
+					<div class="col-sm-9">
+						<input type="text" class="form-control" id="dl_lname" name="dl_lname" required>
+						<div class="invalid-feedback">
+							กรุณากรอกนามสกุล
 						</div>
 					</div>
 				</div>
                 <div class="form-group row">
 					<label for="loation" class="col-sm-3 col-form-label">เบอร์โทรศัพท์</label>
 					<div class="col-sm-9">
-						<input type="text" class="form-control" id="dl_phone" name="dl_phone" maxlength='10' rows="4"onKeyUp="IsNumeric(this.value,this)" required></input>
+						<input type="text" class="form-control" id="dl_phone" name="dl_phone" maxlength='10' rows="4" onKeyUp="IsNumeric(this.value,this)" pattern="[0-9]{10}" title="กรุณากรอกตัวเลข 0-9 จำนวน 10 ตัว" required></input>
 						<div class="invalid-feedback">
 							กรุณากรอกเบอร์โทรศัพท์
 						</div>

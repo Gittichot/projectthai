@@ -33,7 +33,7 @@
             <a href="ManageMaterial/"><span class="fa fa-archive mr-3"></span> การจัดการคลังวัสดุ</a>
           </li>
           <li>
-            <a href="./Report/Main.php"><span class="fa fa-archive mr-3"></span> การจัดการคลังครุภัณฑ์</a>
+            <a href="./ManageDurableArticles/"><span class="fa fa-archive mr-3"></span> การจัดการคลังครุภัณฑ์</a>
           </li>
           <li>
               <a href="./ManageDealer/"><span class="fa fa-user-circle mr-3"></span> จัดการผู้จำหน่าย</a>
