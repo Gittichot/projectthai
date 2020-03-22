@@ -7,16 +7,21 @@ if (!$_SESSION["id"]) {
     echo "</script>";
 } else {
     include '../../condb.php';
-    $sql = "SELECT * FROM dealer";
+    $dastock_id = $_GET['id'];
+    $sql = "SELECT * FROM `durablearticles_stock` WHERE `dastock_id` = '" . $dastock_id . "'  ";
     $result = $condb->query($sql);
+    $row = $result->fetch_assoc();
 
-
+    if (empty($row)) {
+        echo '<script> alert("ไม่พบข้อมูลที่ต้องการแก้ไข !")</script>';
+        echo '<script> window.location = "../"</script>';
+    }
 ?>
     <!doctype html>
     <html lang="en">
 
     <head>
-        <title>สั่งซื้อวัสดุ</title>
+        <title>แก้ไขข้อมูลวัสดุ</title>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
         <link href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700,800,900" rel="stylesheet">
@@ -34,38 +39,47 @@ if (!$_SESSION["id"]) {
          * ตรวจสอบเงื่อนไขที่ว่า ตัวแปร $_POST['submit'] ได้ถูกกำหนดขึ้นมาหรือไม่
          */
         if (isset($_POST['submit'])) {
-
-            $sql = "INSERT INTO `material_order`(`mt_buydate`, `mt_name`, `mt_amount`, `mt_UnitPrice`, `mt_price`, `mtype_id`, `dl_id`) 
-        VALUES ('" . $_POST['mt_buydate'] . "',
-                '" . $_POST['mstock_name'] . "', 
-                '" . $_POST['mt_amount'] . "', 
-                '" . $_POST['mt_UnitPrice'] . "', 
-                '" . $_POST['mt_price'] . "', 
-                '1', 
-                '" . $_POST['dl_id'] . "');";
-
-            $result = $condb->query($sql);
             /**
              * กำหนดตัวแปรเพื่อมารับค่า
              */
-            $mstock_name =  $_POST['mstock_name'];
-            $mt_amount =  $_POST['mt_amount'];
+            $dastock_id = $_POST['dastock_id'];
+            $dastock_name =  $_POST['dastock_name'];
+            $dastock_detel =  $_POST['dastock_detel'];
+            $dastock_location = $_POST['dastock_location'];
             // เช็คว่าข้อมูลซ้ำไหม
-            $sql_check_stockname = "SELECT * FROM `material_stock` WHERE mstock_name =  '" . $mstock_name . "'";
+            $sql_check_stockname = "SELECT * FROM `material_stock` WHERE dastock_name =  '" . $dastock_name . "'";
             $check_stockname = $condb->query($sql_check_stockname);
 
-            //ถ้าข้อมูลซ้ำให้ทำการ UPDATE 
-            if ($check_stockname->num_rows > 0) {
-                $data = $check_stockname->fetch_assoc();
-                $mt_amount += $data["mstock_amount"];
-                $sql_UPDATE_mat_order = "UPDATE material_stock SET mstock_amount='{$mt_amount}' WHERE mstock_id={$data['mstock_id']}";
-                $result_UPDATE_mat_order = $condb->query($sql_UPDATE_mat_order);
+            $check = true;
+            if ($_POST["dastock_name_old"] == $dastock_name) {
+                $check = false;
             }
-            if ($result_UPDATE_mat_order) {
-                echo '<script> alert("สั่งซื้อวัสดุสำเร็จ!")</script>';
+
+            if (!empty($check_stockname->num_rows) && $check) {
+                echo '<script> alert("มีข้อมูลนี้อยู่ในระบบแล้ว!")</script>';
+                header('Refresh:0;');
+                exit;
+            }
+
+            //ตรวจสอบชื่อวัสดุซ้ำหรือไม่
+            $sql_update_mat = "UPDATE `durablearticles_stock` 
+                                 SET `dastock_name`= '" . $dastock_name . "',
+                                     `dastock_detel`= '" . $dastock_detel . "',
+                                     `dastock_location`= '" . $dastock_location . "' 
+                            WHERE dastock_id = '" . $dastock_id . "';";
+
+            $result_update_mat = $condb->query($sql_update_mat);
+            if ($result_update_mat) {
+                #UPDATE ORDER
+                $sql_update_order = "UPDATE `durablearticles_order` 
+                                        SET `da_name`= '" . $dastock_name . "'
+                                    WHERE `da_name` = '" . $_POST["dastock_name_old"] . "'";
+                $condb->query($sql_update_order);
+
+                echo '<script> alert("แก้ไขข้อมูลสำเร็จ !")</script>';
                 header('Refresh:0; url=../');
             } else {
-                echo '<script> alert("สั่งซื้อวัสดุไม่สำเร็จ!")</script>';
+                echo '<script> alert("แก้ไขข้อมูลไม่สำเร็จ!")</script>';
                 header('Refresh:0;');
             }
         }
@@ -77,9 +91,7 @@ if (!$_SESSION["id"]) {
         <!-- Page Content  -->
         <div id="content" class="p-4 p-md-5 pt-5">
             <!-- Table Member -->
-            <?php include 'MatAdd_form.php'; ?>
-
-
+            <?php include 'form_durable.php'; ?>
         </div>
         </div>
 

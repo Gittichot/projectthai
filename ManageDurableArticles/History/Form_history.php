@@ -8,10 +8,10 @@
 					<tr>
 						<th>ลำดับ</th>
 						<th>วันที่</th>
-						<th>ชื่อวัสดุ</th>
+						<th>ชนิครุภัณฑ์</th>
+						<th>รายละเอียด</th>
 						<th>จำนวน</th>
-						<th>ราคาต่อหน่วย</th>
-						<th>ราคารวม</th>
+						<th>ราคา</th>
 						<th>ประเภท</th>
 						<th>ชื่อจำหน่าย</th>
 						<th>เบอร์โทรจำหน่าย</th>
@@ -19,33 +19,17 @@
 				</thead>
 				<tbody>
 					<?php
-					$sql = "SELECT
-                                    material_order.mt_id,
-                                    material_order.mt_buydate,
-                                    material_order.mt_name,
-                                    material_order.mt_amount,
-                                    material_order.mt_UnitPrice,
-                                    material_order.mt_price,
-                                    mattype.mtype_name,
-                                    dealer.dl_fname,
-									dealer.dl_lname,
-                                    dealer.dl_phone
-                                FROM
-                                    material_order
-                                INNER JOIN mattype ON material_order.mtype_id = mattype.mtype_id
-                                INNER JOIN dealer ON material_order.dl_id = dealer.dl_id";
-					$result = $condb->query($sql);
 					$num = 0;
 					while ($row = $result->fetch_assoc()) {
 						$num++;
 					?>
 						<tr>
 							<td><?php echo $num; ?></td>
-							<td><?php echo $row['mt_buydate']; ?></td>
-							<td><?php echo $row['mt_name']; ?></td>
-							<td><?php echo $row['mt_amount']; ?></td>
-							<td><?php echo $row['mt_UnitPrice']; ?> บาท</td>
-							<td><?php echo $row['mt_price']; ?> บาท</td>
+							<td><?php echo $row['da_buydate']; ?></td>
+							<td><?php echo $row['da_name']; ?></td>
+							<td><?php echo $row['da_detel']; ?></td>
+							<td><?php echo $row['da_amount']; ?></td>
+							<td><?php echo $row['da_price']; ?> บาท</td>
 							<td><?php echo $row['mtype_name']; ?></td>
 							<td><?php echo $row['dl_fname']." ".$row['dl_lname'];?></td>
 							<td><?php echo $row['dl_phone']; ?></td>

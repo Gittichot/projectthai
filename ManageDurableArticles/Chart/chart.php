@@ -15,12 +15,12 @@ $cvno = array();
 //หมดตัวแปรแกน y
 
 //sql สำหรับดึงข้อมูล
-$sql = "SELECT A.mt_name, SUM(A.mt_amount) AS Total FROM material_order AS A WHERE A.mt_buydate LIKE '{$condition}%' GROUP BY A.mt_name";
+$sql = "SELECT A.da_name, SUM(A.da_amount) AS Total FROM durablearticles_order AS A WHERE A.da_buydate LIKE '{$condition}%' GROUP BY A.da_name";
 //จบ sql
 $result = $condb->query($sql);
 while ($row = $result->fetch_assoc()) {
     //array_push คือการนำค่าที่ได้จาก sql ใส่เข้าไปตัวแปร array
-    array_push($monthser, $row["mt_name"]);
+    array_push($monthser, $row["da_name"]);
     array_push($cvno, $row["Total"]);
 }
 $catigory = "<item>" . implode("</item><item>", $monthser) . "</item>";

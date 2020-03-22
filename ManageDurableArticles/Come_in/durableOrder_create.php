@@ -7,12 +7,15 @@ if (!$_SESSION["id"]) {
     echo "</script>";
 } else {
     include '../../condb.php';
+    $sql = "SELECT * FROM dealer";
+    $result = $condb->query($sql);
+
 ?>
     <!doctype html>
     <html lang="en">
 
     <head>
-        <title>เพิ่มข้อมูลวัสดุ</title>
+        <title>สั่งซื้อวัสดุ</title>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
         <link href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700,800,900" rel="stylesheet">
@@ -30,33 +33,39 @@ if (!$_SESSION["id"]) {
          * ตรวจสอบเงื่อนไขที่ว่า ตัวแปร $_POST['submit'] ได้ถูกกำหนดขึ้นมาหรือไม่
          */
         if (isset($_POST['submit'])) {
-            /**
-             * กำหนดตัวแปรเพื่อมารับค่า
-             */
-            $dastock_name =  $_POST['dastock_name'];
-            $dastock_detel =  $_POST['dastock_detel'];
-            $dastock_location = $_POST['dastock_location'];
-            // เช็คว่าข้อมูลซ้ำไหม
-            $sql_check_stockname = "SELECT * FROM `durablearticles_stock` WHERE dastock_name =  '" . $dastock_name . "'";
-            $check_stockname = $condb->query($sql_check_stockname);
 
-            //ตรวจสอบชื่อวัสดุซ้ำหรือไม่
-            if (!$check_stockname->num_rows > 0) {
-                $sql_INSERT_mat_order = "INSERT INTO `durablearticles_stock`(`dastock_name`, `dastock_detel`, `dastock_location`) 
-                            VALUES ('" . $dastock_name . "', 
-                                    '" . $dastock_detel . "', 
-                                    '" . $dastock_location . "');";
-                $result_INSERT_mat_order = $condb->query($sql_INSERT_mat_order);
-                if ($result_INSERT_mat_order == TRUE) {
-                    echo '<script> alert("เพิ่มข้อมูลวัสดุสำเร็จ !")</script>';
-                    header('Refresh:0; url=../');
-                } else {
-                    echo '<script> alert("เพิ่มข้อมูลวัสดุไม่สำเร็จ!")</script>';
-                    header('Refresh:0;');
-                }
-            } else {
-                echo '<script> alert("ไม่สามารถเพิ่มข้อมูลครุภัณฑ์ ได้ เนื่องจากมีข้อมูลนี้อยู่ในระบบแล้ว!")</script>';
+            $da_name = $_POST['da_name'];
+            $da_buydate = $_POST['da_buydate'];
+            $da_amount = $_POST['da_amount'];
+            $da_price = $_POST['da_price'];
+            $dastock_detel = $_POST['dastock_detel'];
+            $dastock_location = $_POST['dastock_location'];
+            $dl_id = $_POST['dl_id'];
+
+            $sql_order = "INSERT INTO `durablearticles_order`(`da_buydate`, `da_name`, `da_amount`, `da_price`, `mtype_id`, `dl_id`)  
+                VALUES ('" . $da_buydate . "',
+                        '" . $da_name . "', 
+                        '" . $da_amount . "', 
+                        '" . $da_price . "',  
+                        '2', 
+                        '" . $dl_id . "');";
+
+                $result_order = $condb->query($sql_order);
+
+            $sql_storck = "INSERT INTO `durablearticles_stock`(`dastock_name`, `dastock_detel`, `dastock_amoun`, `dastock_location`)
+                VALUES ('" . $da_name . "',
+                        '" . $dastock_detel . "',
+                        '" . $da_amount . "',
+                        '" . $dastock_location . "');";
+            
+            $result_stock = $condb->query($sql_storck);
+
+            if ($result_order == TRUE AND $result_stock == TRUE) {
+                echo '<script> alert("สั่งซื้อครุภัณฑ์สำเร็จ!")</script>';
                 header('Refresh:0; url=../');
+            } else {
+                echo '<script> alert("สั่งซื้อครุภัณฑ์ไม่สำเร็จ!")</script>';
+                header('Refresh:0;');
             }
         }
         ?>
@@ -67,7 +76,9 @@ if (!$_SESSION["id"]) {
         <!-- Page Content  -->
         <div id="content" class="p-4 p-md-5 pt-5">
             <!-- Table Member -->
-            <?php include 'form_add.php'; ?>
+            <?php include 'durableAdd_form.php'; ?>
+
+
         </div>
         </div>
 

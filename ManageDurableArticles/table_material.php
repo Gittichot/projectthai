@@ -28,7 +28,7 @@
 							<td><?php echo $row['dastock_amoun']; ?></td>
 							<td><?php echo $row['dastock_location']; ?> วัน</td>
 							<td>
-								<a href="Edit/edit_mat.php?id=<?php echo $row['dastock_id']; ?>" class="btn btn-sm btn-warning ">
+								<a href="Edit/edit_durable.php?id=<?php echo $row['dastock_id']; ?>" class="btn btn-sm btn-warning ">
 									<i class="fa fa-pencil-square-o"></i> แก้ไข
 								</a>
 							</td>

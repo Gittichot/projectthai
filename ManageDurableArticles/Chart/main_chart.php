@@ -82,7 +82,7 @@ if (!$_SESSION["id"]) {
                             type: 'column'
                         },
                         title: {
-                            text: 'จำนวนวัสดุที่รับเข้ามา'
+                            text: 'จำนวนครุภัณฑ์ที่รับเข้ามา'
                         },
                         subtitle: {
                             text: ''
@@ -116,7 +116,6 @@ if (!$_SESSION["id"]) {
                                     enabled: true
                                 },
                                 enableMouseTracking: true,
-
                             }
                         },
                         tooltip: {

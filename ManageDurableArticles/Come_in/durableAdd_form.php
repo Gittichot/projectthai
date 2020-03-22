@@ -6,38 +6,47 @@
 			<form class="was-validated" action="" method="POST" enctype="multipart/form-data">
 
 				<div class="form-group row">
-					<label for="pname" class="col-sm-3 col-form-label">ชื่อสินค้า</label>
+					<label for="pname" class="col-sm-3 col-form-label">ชนิดครุภัณฑ์</label>
 					<div class="col-sm-9">
-						<input type="text" class="form-control" id="mt_amount" name="mt_amount" onKeyUp="IsNumeric(this.value,this)" maxlength="7" pattern="[0-9]{1,}" title="กรุณากรอกตัวเลข 0-9 จำนวน 7 ตัว" required>
+						<input type="text" class="form-control" id="da_name" name="da_name" required>
 						<div class="invalid-feedback">
-							กรุณากรอกชื่อสินค้า
+							กรุณากรอกชนิดครุภัณฑ์   
 						</div>
 					</div>
 				</div>
 				<div class="form-group row">
-					<label for="p_id" class="col-sm-3 col-form-label">จำนวนสินค้า</label>
+					<label for="loation" class="col-sm-3 col-form-label">รายละเอียด</label>
 					<div class="col-sm-9">
-						<input type="text" class="form-control" id="mt_amount" name="mt_amount" onKeyUp="IsNumeric(this.value,this)" maxlength="7" pattern="[0-9]{1,}" title="กรุณากรอกตัวเลข 0-9 จำนวน 7 ตัว" required>
+						<textarea type="text" class="form-control" id="dastock_detel" name="dastock_detel" rows="4" style="min-height:150px;" required></textarea>
 						<div class="invalid-feedback">
-							กรุณากรอกจำนวนสินค้า
+							กรุณากรอกรายละเอียด
 						</div>
 					</div>
 				</div>
 				<div class="form-group row">
-					<label for="price" class="col-sm-3 col-form-label">ราคาต่อหน่วย</label>
+					<label for="p_id" class="col-sm-3 col-form-label">จำนวนครุภัณฑ์</label>
 					<div class="col-sm-9">
-						<input type="text" class="form-control" id="mt_UnitPrice" name="mt_UnitPrice" onKeyUp="IsNumeric(this.value,this)" maxlength="8" pattern="[0-9]{1,}" title="กรุณากรอกตัวเลข 0-9 จำนวน 8 ตัว" required>
+						<input type="text" class="form-control" id="da_amount" name="da_amount" onKeyUp="IsNumeric(this.value,this)" maxlength="7" pattern="[0-9]{1,}" title="กรุณากรอกตัวเลข 0-9 จำนวน 7 ตัว" required>
 						<div class="invalid-feedback">
-							กรุณากรอกราคาต่อหน่วย
+							กรุณากรอกจำนวนครุภัณฑ์
 						</div>
 					</div>
 				</div>
 				<div class="form-group row">
-					<label for="numproduct" class="col-sm-3 col-form-label">ราคารวมสินค้า</label>
+					<label for="numproduct" class="col-sm-3 col-form-label">ราคาครุภัณฑ์</label>
 					<div class="col-sm-9">
-						<input type="text" class="form-control" id="mt_price" name="mt_price" onKeyUp="IsNumeric(this.value,this)" maxlength="11" pattern="[0-9]{1,}" title="กรุณากรอกตัวเลข 0-9 จำนวน 11 ตัว" required>
+						<input type="text" class="form-control" id="da_price" name="da_price" onKeyUp="IsNumeric(this.value,this)" maxlength="11" pattern="[0-9]{1,}" title="กรุณากรอกตัวเลข 0-9 จำนวน 11 ตัว" required>
 						<div class="invalid-feedback">
-							กรุณากรอกราคารวมสินค้า
+							กรุณากรอกราคาครุภัณฑ์
+						</div>
+					</div>
+				</div>
+				<div class="form-group row">
+					<label for="numproduct" class="col-sm-3 col-form-label">ที่จัดเก็บ</label>
+					<div class="col-sm-9">
+					<input type="text" class="form-control" id="dastock_location" name="dastock_location" required>
+						<div class="invalid-feedback">
+							กรุณากรอกราคาครุภัณฑ์
 						</div>
 					</div>
 				</div>
@@ -60,7 +69,7 @@
 				<div class="form-group row">
 					<label for="dl_date" class="col-sm-3 col-form-label">วันที่รับสินค้ามา</label>
 					<div class="col-sm-9">
-						<input type="datetime-local" class="form-control" id="mt_buydate" name="mt_buydate" value="<?= date("Y-m-d\TH:i") ?>" required>
+						<input type="datetime-local" class="form-control" id="da_buydate" name="da_buydate" value="<?= date("Y-m-d\TH:i") ?>" required>
 						<div class="invalid-feedback">
 							กรุณาเลือกวันที่รับสินค้ามา (เดือน / วัน / ปี)
 						</div>

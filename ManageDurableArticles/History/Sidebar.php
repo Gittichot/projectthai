@@ -26,10 +26,7 @@
 				<a href="../"><span class="fa fa-archive mr-3"></span> จัดการข้อมูลครุภัณฑ์</a>
 			</li>
 			<li class="">
-				<a href="../Add/add_mat.php"><span class="fa fa-plus mr-3"></span> เพิ่มข้อมูลครุภัณฑ์</a>
-			</li>
-			<li class="">
-				<a href="../Come_in/MatOrder_create.php"><span class="fa fa-cart-plus mr-3"></span> สั่งซื้อครุภัณฑ์</a>
+				<a href="../Come_in/durableOrder_create.php"><span class="fa fa-cart-plus mr-3"></span> สั่งซื้อครุภัณฑ์</a>
 			</li>
 			<li class="active">
 				<a href="#"><span class="fa fa-history mr-3"></span> ประวัติการสั่งซื้อครุภัณฑ์</a>

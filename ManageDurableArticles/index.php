@@ -52,7 +52,7 @@ if (!$_SESSION["id"]) {
         <script>
             function deleteItem(id) {
                 if (confirm('คุณต้องการลบข้อมูลใช่หรือไม่') == true) {
-                    window.location = `Del/del_mat.php?id=${id}`;
+                    window.location = `Del/del_durable.php?id=${id}`;
                 }
             };
         </script>

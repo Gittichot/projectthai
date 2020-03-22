@@ -7,8 +7,21 @@ if (!$_SESSION["id"]) {
     echo "</script>";
 } else {
     include('../../condb.php');
-    $sql = "SELECT * FROM `material_order` ";
-    $query = $condb->query($sql);
+    $sql = "SELECT  durablearticles_order.da_id,
+                    durablearticles_order.da_buydate,
+                    durablearticles_order.da_name,
+                    durablearticles_order.da_detel,
+                    durablearticles_order.da_amount,
+                    durablearticles_order.da_price,
+                    mattype.mtype_name,
+                    dealer.dl_fname,
+                    dealer.dl_lname,
+                    dealer.dl_phone
+            FROM
+                durablearticles_order
+            INNER JOIN mattype ON durablearticles_order.mtype_id = mattype.mtype_id
+            INNER JOIN dealer ON durablearticles_order.dl_id = dealer.dl_id";
+	$result = $condb->query($sql);
 ?>
     <!doctype html>
     <html lang="en">
@@ -31,7 +44,7 @@ if (!$_SESSION["id"]) {
         <!-- Page Content  -->
         <div id="content" class="p-4 p-md-5 pt-5">
             <!-- Table Member -->
-            <?php include 'Form_history.php'; ?>
+            <?php include 'form_history.php'; ?>
 
             <!-- END Page Content  -->
         </div>
