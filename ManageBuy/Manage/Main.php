@@ -1,7 +1,16 @@
 <?php
 session_start();
+error_reporting(0);
+if(!$_SESSION["status"]){
+    if(!$_SESSION["id"]){
+        echo "<script>";
+        echo "alert('ท่านไม่มีสิทธิ์การเข้าใช้งาน');";
+        echo "window.location='../../index.php';";
+        echo "</script>";
+    }        
+}else{
 include '../../condb.php';
-$sql = "SELECT * FROM buy AS A LEFT JOIN member AS B ON A.Mem_id = B.id LEFT JOIN stock_product AS C ON A.P_id = C.P_id";
+$sql = "SELECT * FROM buy AS A INNER JOIN buy_detail AS B ON A.B_id = B.B_id LEFT JOIN member AS C ON A.M_id = C.id LEFT JOIN stock_product AS D ON A.P_id = D.P_id";
 $pro ="SELECT * FROM stock_product";
 $query = $condb->query($sql);
 $product = $condb->query($pro);
@@ -10,7 +19,7 @@ $product = $condb->query($pro);
 <html lang="en">
 
 <head>
-    <title>Main Admin</title>
+    <title>Manage Buy</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <link href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700,800,900" rel="stylesheet">
@@ -49,3 +58,4 @@ $product = $condb->query($pro);
 </body>
 
 </html>
+<?php } ?>

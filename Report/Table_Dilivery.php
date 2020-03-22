@@ -11,18 +11,22 @@
                                 <th>สินค้า</th>
                                 <th>จำนวนที่ซื้อ</th>
                                 <th>ราคารวม</th>
-                                <th>วันเดือนปี ที่ซื้อ</th>
+								<th>วันเดือนปี ที่จอง</th>
+								<th>วันเดือนปี ที่รับสินค้า</th>
+								<th>ประเภทการรับสินค้า</th>
           					</tr>
                 		</thead>
                 	<tbody>
-						<?php while($row = mysqli_fetch_array($querytotal,MYSQLI_ASSOC)) { ?>
+						<?php while($row = mysqli_fetch_array($query,MYSQLI_ASSOC)) { ?>
         			<tr>
-            			<td><?php echo $result['B_id'];?></td>
-            			<td><?php echo $result['M_Fname']." ".$result["M_Lname"]; ?></td>
-                        <td><?php echo $result['P_name']; ?></td>
-                        <td><?php echo $result['B_Amount']; ?></td>
-                        <td><?php echo $result['B_Total']; ?></td>
-                        <td><?php echo $result['B_Date']; ?></td>
+            			<td><?php echo $row['Bo_id'];?></td>
+            			<td><?php echo $row['M_Fname']." ".$row["M_Lname"]; ?></td>
+                        <td><?php echo $row['P_name']; ?></td>
+                        <td><?php echo $row['Bo_amount']; ?></td>
+                        <td><?php echo $row['Bo_total']; ?></td>
+						<td><?php echo $row['Bo_date']; ?></td>
+						<td><?php echo $row['Bo_cdate']; ?></td>
+						<td><?php echo $row['Get_name']; ?></td>
 					</tr>
 	<?php } ?>
 			</tbody>

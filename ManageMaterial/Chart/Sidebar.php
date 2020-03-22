@@ -23,7 +23,7 @@
 				<a href="../../Mainadmin.php"><span class="fa fa-home mr-3"></span> หน้าหลัก</a>
 			</li>
 			<li class="">
-				<a href="../"><span class="fa fa-archive mr-3"></span> จัดการวัสดุ</a>
+				<a href="../"><span class="fa fa-archive mr-3"></span> จัดการข้อมูลวัสดุ</a>
 			</li>
 			<li class="">
 				<a href="../Add/add_mat.php"><span class="fa fa-plus mr-3"></span> เพิ่มข้อมูลสินค้า</a>

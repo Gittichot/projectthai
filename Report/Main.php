@@ -1,5 +1,14 @@
 <?php
 session_start();
+error_reporting(0);
+if(!$_SESSION["status"]){
+    if(!$_SESSION["id"]){
+        echo "<script>";
+        echo "alert('ท่านไม่มีสิทธิ์การเข้าใช้งาน');";
+        echo "window.location='../index.php';";
+        echo "</script>";
+    }        
+}else{
 include '../condb.php';
 $stock = "SELECT * FROM stock_product";
 $stockquery = $condb->query($stock);
@@ -7,16 +16,22 @@ $totalbuy = "";
 $stts = $_SESSION["status"];
 $id = $_SESSION["id"];
 if ($stts=='Admin'){
-    $totalbuy = "SELECT * FROM buy AS A INNER JOIN member AS B ON A.Mem_id = B.id INNER JOIN stock_product AS C ON A.P_id = C.P_id WHERE A.B_Date = CURDATE()";
+    $totalbuy = "SELECT * FROM buy AS A INNER JOIN buy_detail AS B ON A.B_id = B.B_id INNER JOIN member AS C ON A.M_id = C.id INNER JOIN stock_product AS D ON A.P_id = D.P_id WHERE B.B_date = CURDATE()";
+    $sql = "SELECT * FROM booking AS A INNER JOIN booking_detail AS B ON A.Bo_id = B.Bo_id INNER JOIN booking_type AS C ON B.Bo_status = C.type_id INNER JOIN Get_Type AS D ON B.Get_type = D.Get_id INNER JOIN member AS E ON A.M_id = E.id INNER JOIN stock_product AS F ON A.P_id = F.P_id WHERE B.Bo_status = 2";
+    $querytotal = $condb->query($totalbuy);
+    $query = $condb->query($sql);
 }else{
-    $totalbuy = "SELECT * FROM buy AS A INNER JOIN stock_product AS B ON A.P_id = B.P_id WHERE A.Mem_id = '".$id."' ";
+    $totalbuy = "SELECT * FROM buy AS A INNER JOIN buy_detail AS B ON A.B_id = B.B_id INNER JOIN stock_product AS C ON A.P_id = C.P_id WHERE A.M_id = '".$id."' AND B.B_date = CURDATE() ";
+    $sql = "SELECT * FROM booking AS A INNER JOIN booking_detail AS B ON A.Bo_id = B.Bo_id INNER JOIN booking_type AS C ON B.Bo_status = C.type_id INNER JOIN Get_Type AS D ON B.Get_type = D.Get_id INNER JOIN member AS E ON A.M_id = E.id INNER JOIN stock_product AS F ON A.P_id = F.P_id WHERE B.Bo_status = 1 AND A.M_id = '".$id."'";
+    $querytotal = $condb->query($totalbuy);
+    $query = $condb->query($sql);
 }
-$querytotal = $condb->query($totalbuy);
+
 ?>
 <!doctype html>
 <html lang="en">
 <head>
-    <title>Report</title>
+    <title>รายงาน</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <link href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700,800,900" rel="stylesheet">
@@ -33,14 +48,16 @@ $querytotal = $condb->query($totalbuy);
 
 <!-- Page Content  -->
     <div id="content" class="p-4 p-md-5 pt-5">
-<!-- Card Content  -->
-  <!-- Table  -->
+  <!-- Table Total  -->
 <?php if($stts=='Admin'){
     include './Table_total_admin.php';
+    include './Table_Dilivery.php';
  }else {
      include './Table_total_buy.php';
+     include './Table_deli_member.php';
  } ?>
-<!-- Chart Content  -->
+ <!-- Delivery Table  -->
+<!-- Stock Table  -->
 <?php include './Table_Stock.php'; ?>
     <!-- END Table Member  -->
     <!-- END Page Content  -->
@@ -61,7 +78,9 @@ $querytotal = $condb->query($totalbuy);
     $('#Protable').DataTable();
     $('#buytable').DataTable();
     $('#tablebuy').DataTable();
+    $('#report').DataTable();
     </script>
 </body>
 
 </html>
+<?php } ?>

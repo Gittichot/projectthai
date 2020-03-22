@@ -30,7 +30,7 @@
 					<div class="col-sm-9">
 						<input type="text" class="form-control" id="dl_phone" name="dl_phone" maxlength='10' onKeyUp="IsNumeric(this.value,this)" pattern="[0-9]{10}" title="กรุณากรอกตัวเลข 0-9 จำนวน 10 ตัว" value="<?PHP echo $row['dl_phone']; ?>" required>
 						<div class="invalid-feedback">
-							กรุณากรอกเบอร์โทรศัพท์
+						กรุณากรอกเบอร์โทรศัพท์ (กรอกเฉพาะตัวเลข 0-9 เท่านั้น)
 						</div>
 					</div>
 				</div>

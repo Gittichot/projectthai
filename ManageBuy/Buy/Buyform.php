@@ -1,5 +1,5 @@
 <!-- <div id="content" class="p-4 p-md-5 pt-5"> -->
-<div class="card mb-4" method="POST">
+<div class="col-md-6" method="POST">
     	<div class="card-header"><i class="fa fa-table mr-1"></i>ตะกร้าสินค้า</div>
             <div class="card-body">
             <a href="./Main.php?action=empty" class="btn btn-sm btn-danger ">
@@ -32,7 +32,7 @@
             <td><?php echo $item['name']; ?></td>
             <td><?php echo $item['quantity']; ?></td>
 			<td><?php echo $item['price']; ?></td>
-            <td><?php echo number_format($item['price'], 2); ?></td>
+            <td><?php echo number_format($item_price, 2); ?></td>
             <td><a href="./Main.php?action=remove&id=<?php echo $item['id']; ?>" class="btn btn-sm btn-danger ">
 						<i class="fa fa-times"></i>ออกจากตะกร้า</a>
 							</td>

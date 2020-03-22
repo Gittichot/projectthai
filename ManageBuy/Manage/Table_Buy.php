@@ -12,7 +12,6 @@
             <th>จำนวนที่ซื้อ</th>
             <th>ราคารวม</th>
 			<th>วันที่ซื้อ</th>
-            <th>แก้ไขข้อมูล</th>
             <th>ลบข้อมูล</th>
           </tr>
                 </thead>
@@ -22,79 +21,32 @@
             <td><?php echo $result['B_id'];?></td>
             <td><?php echo $result['M_Fname']." ".$result['M_Lname']; ?></td>
             <td><?php echo $result['P_name']; ?></td>
-			<td><?php echo $result['B_Amount']; ?></td>
-            <td><?php echo $result['B_Total']." บาท"; ?></td>
-			<td><?php echo $result['B_Date']; ?></td>
-            <td><a href="#" data-target="#editModal<?php echo $result['B_id'];?>" class="edit" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Edit">&#xE254;</i></a></td>
-            <td><a href="#" data-target="#deleteModal<?php echo $result['B_id']; ?>" class="delete" data-toggle="modal" ><i class="material-icons" data-toggle="tooltip" title="Delete">&#xE872;</i></a></td>
+			<td><?php echo $result['B_amount']; ?></td>
+            <td><?php echo $result['B_total']." บาท"; ?></td>
+			<td><?php echo $result['B_date']; ?></td>
+            <td align="center"><a href="#" data-target="#deleteModal<?php echo $result['B_id']; ?>" class="btn btn btn-danger" data-toggle="modal" >ลบ</a></td>
 
 					</tr>
-					<!-- Edit Modal HTML -->
-	<div id="editModal<?php echo $result['B_id'];?>" class="modal fade" >
-		<div class="modal-dialog">
-			<div class="modal-content">
-				<form method="POST" action="../../control/stock/EditPro.php">
-					<div class="modal-header">
-						<h4 class="modal-title">Edit Employee</h4>
-						<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-					</div>
-					<div class="modal-body">
-					<div class="form-group">
-						<label>รหัสการซื้อ</label>
-						<input  type="text" value="<?php echo $result['B_id'];?>" name="bid" id="bid" class="form-control" required readonly>
-					</div>
-					<div class="form-group">
-					<label>สินค้า</label>
-					<select class="form-control" name="pid" required>
-						<option value="<?php echo $result["P_id"];?>"></option>
-					<?php while($productarray = mysqli_fetch_array($product,MYSQLI_ASSOC)) { ?>
-						<option value="<?php echo $productarray["P_id"];?>"><?php echo $productarray["P_id"]." - ".$productarray["P_name"];?></option>
-					<?php } ?>
-					</select>
-					</div>
-						<div class="form-group">
-							<label>จำนวนที่ซื้อ</label>
-							<input class="form-control" value="<?php echo $result['B_Amount'];?>" name="pam" id="pam" class="form-control" min="0" required>
-						</div>
-						<div class="form-group">
-							<label>ราคารวม</label>
-							<input type="text" value="<?php echo $result['B_Total'];?>" name="Btt" id="Btt" class="form-control" min="0" required>
-						</div>
-						<div class="form-group">
-							<label>วันที่ซื้อ</label>
-							<input type="text" value="<?php echo $result['B_Date'];?>" name="bd" id="bd" class="form-control" required>
-						</div>
-					
-					<div class="modal-footer">
-						<input type="button" class="btn btn-default" data-dismiss="modal" value="Cancel">
-						<input type="submit" class="btn btn-success" value="Save Change">
-					</div>
-				</div>
-				</form>
-			</div>
-		</div>
-	</div>
-	<!--End Edit Modal -->
 	<!-- Delete Modal HTML -->
 	<div id="deleteModal<?php echo $result['B_id']; ?>" name="delete" class="modal fade">
 		<div class="modal-dialog">
 			<div class="modal-content">
 				<form method="POST">
 					<div class="modal-header">
-						<h4 class="modal-title">Confirm Delete Employee?</h4>
+						<h4 class="modal-title">ยืนยันการลบการซื้อขายนี้</h4>
 						<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
 					</div>
 					<div class="modal-body">
 						<p>รหัสการซื้อ : <?php echo $result['B_id']; ?></p>
                         <p>ชื่อผู้ขาย : <?php echo $result['M_Fname']." ".$result['M_Lname'];?></p>
                         <p>สินค้าที่ซื้อ : <?php echo $result['P_name']; ?></p>
-						<p>จำนวนที่ซื้อ : <?php echo $result['B_Amount']; ?></p>
-						<p>ราคารวม : <?php echo $result['B_Total']; ?></p>
-                        <p>วันที่ซื้อ : <?php echo $result['B_Date']; ?></p>
+						<p>จำนวนที่ซื้อ : <?php echo $result['B_amount']; ?></p>
+						<p>ราคารวม : <?php echo $result['B_total']; ?></p>
+                        <p>วันที่ซื้อ : <?php echo $result['B_date']; ?></p>
 					</div>
 					<div class="modal-footer">
-						<a name="del" id="del" class="btn btn-success" href="../../control/buy/DelBuy.php?delid=<?php echo $result['B_id']; ?>" role="button" value="Delete">Delete</a>
-						<input type="button" class="btn btn-default" data-dismiss="modal" value="Cancel">
+						<a name="del" id="del" class="btn btn-danger" href="../../control/buy/DelBuy.php?delid=<?php echo $result['B_id']; ?>" role="button" value="Delete">ยืนยัน</a>
+						<input type="button" class="btn btn-default" data-dismiss="modal" value="ยกเลิก">
 					</div>
 				</form>
 			</div>

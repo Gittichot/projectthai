@@ -2,6 +2,7 @@
 session_start();
 include '../../condb.php';
 $id = $_GET['delid'];
+// echo $_SESSION["status"];
 $sqldel = "DELETE FROM stock_product WHERE P_id = '$id'";
 $querydel = $condb->query($sqldel);
 if($querydel){

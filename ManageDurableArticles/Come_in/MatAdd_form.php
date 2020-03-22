@@ -8,14 +8,7 @@
 				<div class="form-group row">
 					<label for="pname" class="col-sm-3 col-form-label">ชื่อสินค้า</label>
 					<div class="col-sm-9">
-						<select class="form-control" id="mstock_name" name="mstock_name" required>
-							<option value="" disabled selected>----- กรุณาเลือก -----</option>
-							<?php
-							while ($row = $result_stockname->fetch_assoc()) {
-							?>
-								<option value="<?php echo $row['mstock_name']; ?>"><?php echo $row["mstock_name"]; ?></option>
-							<?php } ?>
-						</select>
+						<input type="text" class="form-control" id="mt_amount" name="mt_amount" onKeyUp="IsNumeric(this.value,this)" maxlength="7" pattern="[0-9]{1,}" title="กรุณากรอกตัวเลข 0-9 จำนวน 7 ตัว" required>
 						<div class="invalid-feedback">
 							กรุณากรอกชื่อสินค้า
 						</div>
@@ -56,7 +49,7 @@
 							<?php
 							while ($row = $result->fetch_assoc()) {
 							?>
-								<option value="<?php echo $row['dl_id']; ?>"><?php echo $row["dl_fname"]." ".$row["dl_lname"]; ?></option>
+								<option value="<?php echo $row['dl_id']; ?>"><?php echo $row["dl_fname"] . " " . $row["dl_lname"]; ?></option>
 							<?php } ?>
 						</select>
 						<div class="invalid-feedback">

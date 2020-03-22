@@ -1,5 +1,5 @@
 <!-- <div id="content" class="p-4 p-md-5 pt-5"> -->
-<div class="card mb-4"  method="POST">
+<div class="col-md-6"  method="POST">
 <?php  
 $product_array = $db_handle->runQuery("SELECT * FROM stock_product");
 if(!empty($product_array)) {
@@ -15,6 +15,7 @@ if(!empty($product_array)) {
             					<th>#</th>
 								<th>สินค้า</th>
             					<th>ราคาต่อหน่วย</th>
+								<th>ในคลัง</th>
 								<th>จำนวนที่ต้องการ</th>
                                 <th>ซื้อสินค้า</th>
           					</tr>
@@ -26,11 +27,12 @@ if(!empty($product_array)) {
 					
         			<tr>
 						<form action="./Main.php?action=add&id=<?php echo $product_array[$key]["P_id"]; ?>" method="post">
-            			<td><?php echo $product_array[$key]["P_id"];?></td>
+            			<td><img class="" src="../../pic/<?php echo $product_array[$key]["P_Image"];?>" alt="" srcset=""></td>
 						<td><?php echo $product_array[$key]["P_name"];?></td>
 						<input type="hidden" name="name" value="<?php echo $product_array[$key]["P_name"];?>">
 						<td><?php echo $product_array[$key]["P_price"]." บาท"; ?></td>
 						<input type="hidden" name="price" value="<?php echo $product_array[$key]["P_price"];?>">
+						<td><?php echo $product_array[$key]["P_unit"]." แก้ว"; ?></td>
 						<td><input type="number" name="quantity" value="1" class="form-control" size="2" min="0"></td>
 						<td><input type="submit" value="เพิ่มลงตระกร้า" class="btn btn-sm btn-warning" /></td>
 					</form></tr>

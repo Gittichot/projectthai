@@ -1,30 +1,25 @@
 <?php
 session_start();
+error_reporting(0);
+if(!$_SESSION["status"]){
+    if(!$_SESSION["id"]){
+        echo "<script>";
+        echo "alert('ท่านไม่มีสิทธิ์การเข้าใช้งาน');";
+        echo "window.location='../../index.php';";
+        echo "</script>";
+    }        
+}else{
 include '../../condb.php';
  $id = $_SESSION["id"];
-$sql = "SELECT * FROM booking AS A 
-INNER JOIN booking_detail AS B 
-ON A.Bo_id = B.Boo_id
-INNER JOIN get_type AS C
-ON  B.Get_type = C.Get_id
-INNER JOIN member AS D
-ON A.M_id = D.id
-INNER JOIN stock_product AS E
-ON A.P_id = E.P_id
-LEFT JOIN buy AS F
-ON A.Bo_id = F.Bo_id
-WHERE F.Bo_id IS NULL AND D.id = '".$id."' ";
+$sql = "SELECT * FROM booking AS A INNER JOIN booking_detail AS B ON A.Bo_id = B.Bo_id INNER JOIN booking_type AS C ON B.Bo_status = C.type_id INNER JOIN Get_Type AS D ON B.Get_type = D.Get_id INNER JOIN member AS E ON A.M_id = E.id INNER JOIN stock_product AS F ON A.P_id = F.P_id WHERE A.M_id = '".$id."' ";
+
 $query = $condb->query($sql);
-$product = "SELECT * FROM `stock_product`";
-$type = "SELECT * FROM `get_type`";
-$querypro = $condb->query($product);
-$querytype = $condb->query($type);
 ?>
 <!doctype html>
 <html lang="en">
 
 <head>
-    <title>Main Admin</title>
+    <title>การจองสินค้า</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <link href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700,800,900" rel="stylesheet">
@@ -41,16 +36,23 @@ $querytype = $condb->query($type);
     margin: 40px 0;
     color: red;
     }
+    .nobill {
+        background-color: rgb(255,0,0);
+    }
+    .bill {
+        background-color: rgb(0,255,0);
+    }
     </style>
 </head>
 
-<body>
+<body class="sb-nav-fixed">
 <?php include './Sidebar.php'; ?>
 
 <!-- Page Content  -->
     <div id="content" class="p-4 p-md-5 pt-5">
 <!-- Card Content  -->
-<?php include './Table_booking.php'; ?>
+<?php include './Table_booking.php';
+?>
     <!-- END Page Content  --></div>
     <script src="../../js/jquery.min.js"></script>
 
@@ -70,3 +72,4 @@ $querytype = $condb->query($type);
 </body>
 
 </html>
+<?php } ?>

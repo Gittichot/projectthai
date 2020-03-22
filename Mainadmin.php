@@ -1,15 +1,37 @@
 <?php
 session_start();
+error_reporting(0);
+if(!$_SESSION["status"]){
+    if(!$_SESSION["id"]){
+        echo "<script>";
+        echo "alert('ท่านไม่มีสิทธิ์การเข้าใช้งาน');";
+        echo "window.location='./index.php';";
+        echo "</script>";
+    }        
+}else{
 include './condb.php';
-$sql = "SELECT A.id , A.M_Fname, A.M_Lname, A.M_Add, A.M_Tel, B.B_Date, COUNT(B.B_id) AS Total, SUM(B.B_Total) AS Totalbuy FROM member AS A LEFT JOIN buy AS B ON A.id = B.Mem_id";
-$buy = "SELECT * FROM buy";
-$booking = "SELECT * FROM booking";
+$id = $_SESSION["id"];
+$sql = "SELECT * FROM buy AS A INNER JOIN buy_detail AS B ON A.B_id = B.B_id INNER JOIN stock_product AS C ON A.P_id = C.P_id INNER JOIN member AS D ON A.M_id = D.id";
+$today = "SELECT A.id , A.M_Fname, A.M_Lname, A.M_Add, A.M_Tel, C.B_date, COUNT(B.B_id) AS Total, SUM(C.B_total) AS Totalbuy FROM member AS A LEFT JOIN buy AS B ON A.id = B.M_id INNER JOIN buy_detail AS C ON B.B_id = C.B_id WHERE C.B_date = CURDATE()";
 $query = $condb->query($sql);
+$querytoday = $condb->query($today);
+// totalBuy
+$sqltotalbuy = "SELECT COUNT(A.B_id) AS Totalbuy FROM buy AS A";
+$totalbuy = $condb->query($sqltotalbuy);
+//totalbooking
+$sqltotalbo = "SELECT COUNT(A.Bo_id) AS Totalbooking FROM booking AS A";
+$totalbo = $condb->query($sqltotalbo);
+//totalmember
+$sqltotalm = "SELECT COUNT(A.id) AS Total FROM member AS A WHERE A.M_Status = 2";
+$totalm = $condb->query($sqltotalm);
+//totalstock
+$sqltotalst = "SELECT SUM(A.P_unit) AS Totalstock FROM stock_product AS A";
+$totalst = $condb->query($sqltotalst);
 ?>
 <!doctype html>
 <html lang="en">
 <head>
-    <title>Main Admin</title>
+    <title>หน้า Admin</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <link href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700,800,900" rel="stylesheet">
@@ -29,9 +51,7 @@ $query = $condb->query($sql);
 <!-- Card Content  -->
  <?php include './Card.php'; ?>
   <!-- Table Member -->
-  <?php include './Table/table_member.php'; ?>
-<!-- Chart Content  -->
-<?php include './Total_buy.php'; ?>
+  <?php include './table_member.php'; ?>
     <!-- END Page Content  -->
     </div>
     <!-- JQuery -->
@@ -52,3 +72,4 @@ $query = $condb->query($sql);
 </body>
 
 </html>
+<?php }?>

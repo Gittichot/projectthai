@@ -17,12 +17,12 @@
                 	<tbody>
 						<?php while($row = mysqli_fetch_array($querytotal,MYSQLI_ASSOC)) { ?>
         			<tr>
-            			<td><?php echo $result['B_id'];?></td>
-            			<td><?php echo $result['M_Fname']." ".$result["M_Lname"]; ?></td>
-                        <td><?php echo $result['P_name']; ?></td>
-                        <td><?php echo $result['B_Amount']; ?></td>
-                        <td><?php echo $result['B_Total']; ?></td>
-                        <td><?php echo $result['B_Date']; ?></td>
+            			<td><?php echo $row['B_id'];?></td>
+            			<td><?php echo $row['M_Fname']." ".$row["M_Lname"]; ?></td>
+                        <td><?php echo $row['P_name']; ?></td>
+                        <td><?php echo $row['B_amount']; ?></td>
+                        <td><?php echo $row['B_total']; ?></td>
+                        <td><?php echo $row['B_date']; ?></td>
 					</tr>
 	<?php } ?>
 			</tbody>

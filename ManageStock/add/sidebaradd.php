@@ -15,10 +15,21 @@
 	          <span class="sr-only">Toggle Menu</span>
 	        </button>
         </div> -->
-	  		<h1><div class="logo">Admin</div></h1>
+        <?php $stts = $_SESSION["status"];
+        $status = "Administrator";
+        if($stts=='Admin'){ ?>
+	  		<h1><div class="logo"><?php echo $status; ?></div></h1>
         <ul class="list-unstyled components mb-5">
           <li class="active">
-            <a href="../Main.php"><span class="fa fa-home mr-3"></span> กลับไปหน้าการจัดการ</a>
+            <a href="../Main.php"><span class="fa fa-angle-left mr-3"></span> กลับ</a>
           </li>
         </ul>
+        <?php }else{ ?>
+          <h1><div class="logo"><?php echo $_SESSION["Fname"]." ".$_SESSION["Lname"]; ?></div></h1>
+        <ul class="list-unstyled components mb-5">
+          <li class="active">
+            <a href="../Main.php"><span class="fa fa-angle-left mr-3"></span> กลับ</a>
+          </li>
+        </ul>
+      <?php  } ?>
     	</nav>

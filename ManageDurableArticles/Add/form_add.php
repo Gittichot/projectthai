@@ -5,29 +5,29 @@
 		<div class="col-md-8 mx-auto">
 			<form class="was-validated" action="" method="POST" enctype="multipart/form-data">
 				<div class="form-group row">
-					<label for="pname" class="col-sm-3 col-form-label">ชื่อสินค้า</label>
+					<label for="pname" class="col-sm-3 col-form-label">ชนิดครุภัณฑ์</label>
 					<div class="col-sm-9">
-						<input type="text" class="form-control" id="mstock_name" name="mstock_name" required>
+						<input type="text" class="form-control" id="dastock_name" name="dastock_name" required>
 						<div class="invalid-feedback">
-							กรุณากรอกชื่อสินค้า
+							กรุณากรอกชนิดครุภัณฑ์
 						</div>
 					</div>
 				</div>
 				<div class="form-group row">
-					<label for="loation" class="col-sm-3 col-form-label">ที่จัดเก็บสินค้า</label>
+					<label for="loation" class="col-sm-3 col-form-label">รายละเอียด</label>
 					<div class="col-sm-9">
-						<input type="text" class="form-control" id="mstock_location" name="mstock_location" rows="4" required></input>
+						<textarea type="text" class="form-control" id="dastock_detel" name="dastock_detel" rows="4" style="min-height:150px;" required></textarea>
 						<div class="invalid-feedback">
-							กรุณากรอกที่จัดเก็บสินค้า
+							กรุณากรอกรายละเอียด ตัวอย่างเช่น (ยี่ห้อ,เลขทะเบียน,เลขเครื่องจักร ฯ)
 						</div>
 					</div>
-                </div>
-                <div class="form-group row">
-					<label for="loation" class="col-sm-3 col-form-label">ระยะเวลาในการจัดส่ง</label>
+				</div>
+				<div class="form-group row">
+					<label for="loation" class="col-sm-3 col-form-label">ที่จัดเก็บ</label>
 					<div class="col-sm-9">
-						<input type="text" class="form-control" id="mstock_waittime" name="mstock_waittime" rows="4"onKeyUp="IsNumeric(this.value,this)" required></input>
+						<input type="text" class="form-control" id="dastock_location" name="dastock_location"  required></input>
 						<div class="invalid-feedback">
-							กรุณากรอกระยะเวลาในการจัดส่ง
+							กรุณากรอกที่จัดเก็บ
 						</div>
 					</div>
 				</div>

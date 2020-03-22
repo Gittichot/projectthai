@@ -17,7 +17,7 @@
 						</div>
 						<div class="form-group">
 							<label>เบอร์ติดต่อ</label>
-							<input type="text"  name="Phone" id="Phone" class="form-control" required>
+							<input type="number"  name="Phone" id="Phone" class="form-control" pattern="[1234567890]{10}" title="กรุณากรอกเบอร์โทรติดต่อ 10 ตัวเลข" required>
 						</div>
 						<div class="form-group">
 							<label>ชื่อผู้ใช้</label>
@@ -27,9 +27,13 @@
 							<label>รหัสผ่าน</label>
 							<input type="text"  name="pass" id="pass" class="form-control" required>
 						</div>
+						<div class="form-group">
+							<label>รหัสประชาชน</label>
+							<input type="number"  name="idcard" id="idcard" class="form-control" pattern="[1234567890]{13}" title="กรุณากรอกตัวเลขบัตรประชาชน 13 หลัก" required>
+						</div>
 					</div>
 					<div class="modal-footer">
-						<input type="submit" class="btn btn-success" value="Save Change">
+						<input type="submit" class="btn btn-success" value="เพิ่มพนักงาน">
 					</div>
 
 </form>

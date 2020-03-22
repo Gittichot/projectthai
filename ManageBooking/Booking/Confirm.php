@@ -1,5 +1,15 @@
 <?php
 session_start();
+error_reporting(0);
+if(!$_SESSION["status"]){
+    if(!$_SESSION["id"]){
+        echo "<script>";
+        echo "alert('ท่านไม่มีสิทธิ์การเข้าใช้งาน');";
+        echo "window.location='../../index.php';";
+        echo "</script>";
+
+    }        
+}else{
 include '../../condb.php';
 $sql = "SELECT * FROM `get_type`";
 $query = $condb->query($sql);
@@ -59,7 +69,7 @@ $order_details .= '</table>';
 <html lang="en">
 
 <head>
-    <title>Main Admin</title>
+    <title>ยืนยันการจอง</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <link href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700,800,900" rel="stylesheet">
@@ -91,7 +101,7 @@ $order_details .= '</table>';
 						</div>
 						<div class="form-group">
 							<label>เบอร์โทรลูกค้า</label>
-							<input class="form-control"  name="tel" id="tel" class="form-control" required></input>
+							<input type="tel" class="form-control"  name="tel" id="tel" class="form-control" required></input>
 						</div>
 						<div class="form-group">
 							<label>วันที่รับ-ส่ง</label>
@@ -191,3 +201,4 @@ $(document).ready(function(){
 </body>
 
 </html>
+<?php } ?>

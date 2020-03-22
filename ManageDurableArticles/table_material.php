@@ -7,10 +7,10 @@
 				<thead class="thead-light">
 					<tr>
 						<th scope="col">ลำดับ</th>
-						<th scope="col">ชื่อวัสดุ</th>
+						<th scope="col">ชนิดครุภัณฑ์</th>
+						<th scope="col">รายละเอียด</th>
 						<th scope="col">จำนวน</th>
 						<th scope="col">ที่จัดเก็บ</th>
-						<th scope="col">เวลาการสั่งสินค้า</th>
 						<th scope="col"></th>
 						<th scope="col"></th>
 					</tr>
@@ -23,17 +23,17 @@
 					?>
 						<tr>
 							<td><?php echo $num; ?></td>
-							<td><?php echo $row['mstock_name']; ?></td>
-							<td><?php echo $row['mstock_amount']; ?></td>
-							<td><?php echo $row['mstock_location']; ?></td>
-							<td><?php echo $row['mstock_waittime']; ?> วัน</td>
+							<td><?php echo $row['dastock_name']; ?></td>
+							<td><?php echo $row['dastock_detel']; ?></td>
+							<td><?php echo $row['dastock_amoun']; ?></td>
+							<td><?php echo $row['dastock_location']; ?> วัน</td>
 							<td>
-								<a href="Edit/edit_mat.php?id=<?php echo $row['mstock_id']; ?>" class="btn btn-sm btn-warning ">
+								<a href="Edit/edit_mat.php?id=<?php echo $row['dastock_id']; ?>" class="btn btn-sm btn-warning ">
 									<i class="fa fa-pencil-square-o"></i> แก้ไข
 								</a>
 							</td>
 							<td>
-								<a href="#" onclick="deleteItem(<?php echo $row['mstock_id']; ?>);" class="btn btn-sm btn-danger">
+								<a href="#" onclick="deleteItem(<?php echo $row['dastock_id']; ?>);" class="btn btn-sm btn-danger">
 									<i class="fa fa-trash"></i> ลบ
 								</a>
 							</td>

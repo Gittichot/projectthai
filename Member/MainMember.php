@@ -1,5 +1,14 @@
 <?php
 session_start();
+error_reporting(0);
+if(!$_SESSION["status"]){
+    if(!$_SESSION["id"]){
+        echo "<script>";
+        echo "alert('ท่านไม่มีสิทธิ์การเข้าใช้งาน');";
+        echo "window.location='../index.php';";
+        echo "</script>";
+    }        
+}else{
 include '../condb.php';
 require '../control/buy/controller.php';
 $db_handle = NEW DBController();
@@ -7,14 +16,17 @@ $sql = "SELECT * FROM member WHERE id = '".$_SESSION["id"]."' ";
 $query = $condb->query($sql);
 $result = mysqli_fetch_array($query,MYSQLI_ASSOC);
 $id = $_SESSION["id"];
-$totalbuy = "SELECT * FROM buy AS A INNER JOIN stock_product AS B ON A.P_id = B.P_id WHERE A.Mem_id = '".$id."' AND A.B_Date = CURDATE()";
-require '../control/Buy.php';
+$totalbuy = "SELECT * FROM buy AS A
+INNER JOIN buy_detail AS B
+ON A.B_id = B.B_id
+INNER JOIN stock_product AS C
+ON A.P_id = C.P_id WHERE A.M_id = '".$id."' ";
 $querytotal = $condb->query($totalbuy);
 ?>
 <!doctype html>
 <html lang="en">
 <head>
-    <title>Main Booking</title>
+    <title>หน้าสมาชิก</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <link href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700,800,900" rel="stylesheet">
@@ -33,7 +45,6 @@ $querytotal = $condb->query($totalbuy);
 <?php include './Profile.php';
       include './Table_total.php';
 ?>
-
     <!-- END Page Content  -->
     </div>
     <!-- JQuery -->
@@ -54,3 +65,4 @@ $querytotal = $condb->query($totalbuy);
 </body>
 
 </html>
+<?php }?>

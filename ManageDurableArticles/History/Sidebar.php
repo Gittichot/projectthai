@@ -23,19 +23,19 @@
 				<a href="../../Mainadmin.php"><span class="fa fa-home mr-3"></span> หน้าหลัก</a>
 			</li>
 			<li class="">
-				<a href="../"><span class="fa fa-archive mr-3"></span> จัดการข้อมูลวัสดุ</a>
+				<a href="../"><span class="fa fa-archive mr-3"></span> จัดการข้อมูลครุภัณฑ์</a>
 			</li>
 			<li class="">
-				<a href="../Add/add_mat.php"><span class="fa fa-plus mr-3"></span> เพิ่มข้อมูลสินค้า</a>
+				<a href="../Add/add_mat.php"><span class="fa fa-plus mr-3"></span> เพิ่มข้อมูลครุภัณฑ์</a>
 			</li>
 			<li class="">
-				<a href="../Come_in/MatOrder_create.php"><span class="fa fa-cart-plus mr-3"></span> สั่งซื้อวัสดุ</a>
+				<a href="../Come_in/MatOrder_create.php"><span class="fa fa-cart-plus mr-3"></span> สั่งซื้อครุภัณฑ์</a>
 			</li>
 			<li class="active">
-				<a href="#"><span class="fa fa-history mr-3"></span> ประวัติการสั่งซื้อวัสดุ</a>
+				<a href="#"><span class="fa fa-history mr-3"></span> ประวัติการสั่งซื้อครุภัณฑ์</a>
 			</li>
 			<li class="">
-				<a href="../Chart/main_chart.php"><span class="fa fa-bar-chart mr-3"></span> สถิติการสั่งซื้อวัสดุ</a>
+				<a href="../Chart/main_chart.php"><span class="fa fa-bar-chart mr-3"></span> สถิติการสั่งซื้อครุภัณฑ์</a>
 			</li>
 		</ul>
 	</nav>

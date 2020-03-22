@@ -25,9 +25,9 @@
                 <div class="form-group row">
 					<label for="loation" class="col-sm-3 col-form-label">เบอร์โทรศัพท์</label>
 					<div class="col-sm-9">
-						<input type="text" class="form-control" id="dl_phone" name="dl_phone" maxlength='10' rows="4" onKeyUp="IsNumeric(this.value,this)" pattern="[0-9]{10}" title="กรุณากรอกตัวเลข 0-9 จำนวน 10 ตัว" required></input>
+						<input type="text" class="form-control" id="dl_phone" name="dl_phone" maxlength='10' onKeyUp="IsNumeric(this.value,this)" pattern="[0-9]{10}" title="กรุณากรอกตัวเลข 0-9 จำนวน 10 ตัว" required></input>
 						<div class="invalid-feedback">
-							กรุณากรอกเบอร์โทรศัพท์
+							กรุณากรอกเบอร์โทรศัพท์ (กรอกเฉพาะตัวเลข 0-9 เท่านั้น)
 						</div>
 					</div>
 				</div>

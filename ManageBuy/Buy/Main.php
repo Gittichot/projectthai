@@ -1,5 +1,15 @@
 <?php
 session_start();
+error_reporting(0);
+if(!$_SESSION["status"]){
+    if(!$_SESSION["id"]){
+        echo "<script>";
+        echo "alert('ท่านไม่มีสิทธิ์การเข้าใช้งาน');";
+        echo "window.location='../../index.php';";
+        echo "</script>";
+
+    }        
+}else{
 require '../../control/buy/controller.php';
 $db_handle = new DBController();
 
@@ -51,7 +61,7 @@ if(!empty($_GET["action"])) {
 <html lang="en">
 
 <head>
-    <title>Main Admin</title>
+    <title>การซื้อขายสินค้า</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <link href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700,800,900" rel="stylesheet">
@@ -67,18 +77,26 @@ if(!empty($_GET["action"])) {
     margin: 40px 0;
     color: red;
     }
+    img{
+   	float: left;
+   	margin: 5px;
+   	width: 60px;
+   	height: 60px;
+   }
     </style>
 </head>
 
 <body>
+    
 <?php include './Sidebar.php'; ?>
 <!-- Page Content  -->
     <div id="content" class="p-4 p-md-5 pt-5">
+    <div class="row">
 <!-- Card Buy Content  -->
 <?php include './Table_Pro.php'; ?>
 <!--  Buy Content  -->
 <?php include './Buyform.php'; ?>
-    <!-- END Page Content  --></div>
+    <!-- END Page Content  --></div></div>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.js" crossorigin="anonymous"></script>
     <script src="../../js/jquery.min.js"></script>
     <script src="../../js/popper.js"></script>
@@ -86,3 +104,4 @@ if(!empty($_GET["action"])) {
     <script src="../../js/main.js"></script>
 </body>
 </html>
+<?php } ?>

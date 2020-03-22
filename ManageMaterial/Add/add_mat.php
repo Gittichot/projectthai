@@ -1,11 +1,12 @@
 <?php
 session_start();
-if (!$_SESSION['id']) {
-    header("Location:../");
+if (!$_SESSION["id"]) {
+    echo "<script>";
+    echo "alert('ท่านไม่มีสิทธิ์การเข้าใช้งาน');";
+    echo "window.location='../';";
+    echo "</script>";
 } else {
     include '../../condb.php';
-    $sql = "SELECT * FROM dealer";
-    $result = $condb->query($sql);
 ?>
     <!doctype html>
     <html lang="en">

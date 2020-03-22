@@ -1,6 +1,6 @@
 <!-- <div id="content" class="p-4 p-md-5 pt-5"> -->
 <div class="card mb-4">
-    	<div class="card-header"><i class="fa fa-table mr-1"></i>ตารางแสดงยอดการขาย</div>
+    	<div class="card-header"><i class="fa fa-table mr-1"></i>ตารางแสดงยอดการขายวันนี้</div>
             <div class="card-body">
                 <div class="table-responsive">
                     <table class="table table-bordered" id="buytable" width="100%" cellspacing="0">
@@ -18,9 +18,9 @@
         			<tr>
             			<td><?php echo $row['B_id'];?></td>
             			<td><?php echo $row['P_name']; ?></td>
-                        <td><?php echo $row['B_Amount']; ?></td>
-                        <td><?php echo $row['B_Total']; ?></td>
-                        <td><?php echo $row['B_Date']; ?></td>
+                        <td><?php echo $row['B_amount']; ?></td>
+                        <td><?php echo $row['B_total']; ?></td>
+                        <td><?php echo $row['B_date']; ?></td>
 					</tr>
 	<?php } ?>
 			</tbody>

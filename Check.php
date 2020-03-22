@@ -1,10 +1,26 @@
 <?php
 session_start();
-    include 'condb.php';
-    $username = $_POST['username'];
+    include './condb.php';
+    error_reporting(0);
+    if(empty($_POST['password'])){
+        echo "<script>";
+        echo "alert('Please Input your Password');";
+        echo "window.location='./index.php';";
+        echo "</script>";
+    }
+    else if(empty($_POST['username'])){
+        echo "<script>";
+        echo "alert('Please Input your Username');";
+        echo "window.location='./index.php';";
+        echo "</script>";
+    }
+    else {
+        $username = $_POST['username'];
     $password = $_POST['password'];
-    $realuser = md5($username);
-    $realpassword = md5($password);
+    $protectuser = $condb->real_escape_string($username);
+    $protectpass = $condb->real_escape_string($password);
+    $realuser = md5($protectuser);
+    $realpassword = md5($protectpass);
 
     $sql = "SELECT * FROM member WHERE M_User = '".$realuser."' AND M_Pass = '".$realpassword."' ";
     $query = $condb->query($sql);
@@ -13,8 +29,7 @@ session_start();
         if($result["M_Status"]==1) {
             $_SESSION["status"] = 'Admin';
             $_SESSION["id"] = $result["id"];
-            $_SESSION["Fname"] = $result["M_Fname"];
-            $_SESSION["Lname"] = $result["M_Lname"];
+            $_SESSION["cart_item"] = '';
             header("location: ./Mainadmin.php");
 
         }
@@ -23,6 +38,9 @@ session_start();
             $_SESSION["id"] = $result["id"];
             $_SESSION["Fname"] = $result["M_Fname"];
             $_SESSION["Lname"] = $result["M_Lname"];
+            $fname = $_SESSION["Fname"];
+            $lname = $_SESSION["Lname"];
+            $_SESSION["cart_member"] = '';
             header("location: ./Member/MainMember.php");
 
         }
@@ -40,5 +58,7 @@ session_start();
         echo "window.location='./index.php';";
         echo "</script>";
     }
+}
+    
     
      ?>

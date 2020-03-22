@@ -26,8 +26,8 @@
 
           <fieldset class="clearfix">
 
-            <p ><span class="fa fa-user"></span><input type="text" name="username"  Placeholder="Username" required></p> <!-- JS because of IE support; better: placeholder="Username" -->
-            <p><span class="fa fa-lock"></span><input type="password" name="password"  Placeholder="Password" pattern="(?=.*\d)(?=.*[a-z]).{8,}" title="Must contain at least one number and lowercase letter, and at least 8 or more characters" required></p> <!-- JS because of IE support; better: placeholder="Password" -->
+            <p ><span class="fa fa-user"></span><input type="text" name="username"  Placeholder="Username" required ></p> <!-- JS because of IE support; better: placeholder="Username" -->
+            <p><span class="fa fa-lock"></span><input type="password" name="password"  Placeholder="Password" pattern="(?=.*\d)(?=.*[a-z]).{8,}" title="กรุณาตรวจสอบ Username และ Password" required></p> <!-- JS because of IE support; better: placeholder="Password" -->
             
              <div>
                                 <span style="width:50%; text-align:right;  display: inline-block;"><input type="submit" value="Login"></span>

@@ -1,11 +1,12 @@
 <?php
 session_start();
-if (!$_SESSION['id']) {
-    header("Location:../");
+if (!$_SESSION["id"]) {
+    echo "<script>";
+    echo "alert('ท่านไม่มีสิทธิ์การเข้าใช้งาน');";
+    echo "window.location='../';";
+    echo "</script>";
 } else {
     include '../../condb.php';
-    $sql = "SELECT * FROM dealer";
-    $result = $condb->query($sql);
 ?>
     <!doctype html>
     <html lang="en">
@@ -32,19 +33,19 @@ if (!$_SESSION['id']) {
             /**
              * กำหนดตัวแปรเพื่อมารับค่า
              */
-            $mstock_name =  $_POST['mstock_name'];
-            $mstock_location =  $_POST['mstock_location'];
-            $mstock_waittime = $_POST['mstock_waittime'];
+            $dastock_name =  $_POST['dastock_name'];
+            $dastock_detel =  $_POST['dastock_detel'];
+            $dastock_location = $_POST['dastock_location'];
             // เช็คว่าข้อมูลซ้ำไหม
-            $sql_check_stockname = "SELECT * FROM `material_stock` WHERE mstock_name =  '" . $mstock_name . "'";
+            $sql_check_stockname = "SELECT * FROM `durablearticles_stock` WHERE dastock_name =  '" . $dastock_name . "'";
             $check_stockname = $condb->query($sql_check_stockname);
 
             //ตรวจสอบชื่อวัสดุซ้ำหรือไม่
             if (!$check_stockname->num_rows > 0) {
-                $sql_INSERT_mat_order = "INSERT INTO `material_stock`(`mstock_name`, `mstock_location`, `mstock_waittime`) 
-                            VALUES ('" . $mstock_name . "', 
-                                    '" . $mstock_location . "', 
-                                    '" . $mstock_waittime . "');";
+                $sql_INSERT_mat_order = "INSERT INTO `durablearticles_stock`(`dastock_name`, `dastock_detel`, `dastock_location`) 
+                            VALUES ('" . $dastock_name . "', 
+                                    '" . $dastock_detel . "', 
+                                    '" . $dastock_location . "');";
                 $result_INSERT_mat_order = $condb->query($sql_INSERT_mat_order);
                 if ($result_INSERT_mat_order == TRUE) {
                     echo '<script> alert("เพิ่มข้อมูลวัสดุสำเร็จ !")</script>';
@@ -54,7 +55,7 @@ if (!$_SESSION['id']) {
                     header('Refresh:0;');
                 }
             } else {
-                echo '<script> alert("มีข้อมูลนี้อยู่ในระบบแล้ว!")</script>';
+                echo '<script> alert("ไม่สามารถเพิ่มข้อมูลครุภัณฑ์ ได้ เนื่องจากมีข้อมูลนี้อยู่ในระบบแล้ว!")</script>';
                 header('Refresh:0; url=../');
             }
         }

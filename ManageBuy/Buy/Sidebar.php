@@ -1,8 +1,8 @@
 <nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark">
             <div class="navbar-brand">Thai Orange</div><button class="btn btn-link btn-sm order-1 order-lg-0" id="sidebarCollapse" href="#"><i class="fa fa-bars"></i></button>
             <!-- Navbar Search-->
-            <form class="d-none d-md-inline-block form-inline ml-auto mr-0 mr-md-3 my-2 my-md-0" action="./Checkout.php">
-            <button type="button" class="btn btn-danger"><span class="fa fa-times mr-3"></span>ออกจากระบบ</button>
+            <form class="d-none d-md-inline-block form-inline ml-auto mr-0 mr-md-3 my-2 my-md-0" action="../../Checkout.php">
+            <button type="submit" class="btn btn-danger"><span class="fa fa-times mr-3"></span>ออกจากระบบ</button>
                 </div>
             </form>
         </nav>
@@ -16,8 +16,9 @@
 	        </button>
         </div> -->
         <?php $stts = $_SESSION["status"];
+        $status = "Administrator";
         if($stts=='Admin'){ ?>
-	  		<h1><div class="logo"><?php echo $_SESSION["status"]; ?></div></h1>
+	  		<h1><div class="logo"><?php echo $status; ?></div></h1>
         <ul class="list-unstyled components mb-5">
           <li class="active">
             <a href="../../Mainadmin.php"><span class="fa fa-home mr-3"></span> หน้าหลัก</a>
